@@ -2,7 +2,7 @@ angular.module('starter.controllers-account', [])
 
 .controller('AccountCtrl', function(
   $rootScope, $scope, $state, $stateParams, $timeout,
-  $ionicModal, $ionicHistory, $ionicPopup, $ionicActionSheet,
+  $ionicModal, $ionicHistory, $ionicPopup, $ionicActionSheet, $cordovaGeolocation, $http,
   Auth, Profile, Codes, Utils) {
 
   // ----
@@ -529,7 +529,42 @@ angular.module('starter.controllers-account', [])
       } else { return "";};
     } else { return "";};
   };
+                                                                            ////////////////////////////////
+  $scope.setGPSLocation = function() {
+    $ionicActionSheet.show({
+      buttons: [
+        {text: 'Use current coordinates'},
+        {text: 'Choose city manually'},
+      ],
+      titleText: 'Set your location',
+      cancelText: 'Cancel',
+      cancel: function () {
+        // add cancel code..
+      },
+      buttonClicked: function(index) {
+        if (index === 0){
+          var posOptions = {enableHighAccuracy: false};
+          $cordovaGeolocation
+            .getCurrentPosition(posOptions)
+            .then(function (position) {
+              var lat  = position.coords.latitude;
+              var long = position.coords.longitude;
+              console.log(lat,long);
+              $http.get("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=true").then(function(response) {
+                console.log(response.data.results[4].formatted_address);
+                Profile.setUserLocation($scope.AuthData.uid,response.data.results[4].formatted_address);
+              });
 
+
+            }, function(err) {
+              // error
+            });
+        }
+      }
+
+    });
+
+  };
   // fn update profile picture
   $scope.changeProfilePicture = function() {
     // Show the action sheet
@@ -545,31 +580,24 @@ angular.module('starter.controllers-account', [])
         cancel: function() {
             // add cancel code..
         },
-        //buttonClicked: function(sourceTypeIndex) {
-        //    proceed(sourceTypeIndex)
-        //    return true;
-        //}
+
         buttonClicked: function(index, sourceTypeIndex) {
           if (index === 1 || 2){
             console.log(index);
             proceed(sourceTypeIndex)
             return true;
           };
-          if (index ===0) {
+          if (index === 0) {
             Profile.setFbProfilePicture($scope.AuthData.uid, $scope.AuthData.facebook.profileImageURL);
+            return true;
           }
-          
         }
-
-
     });
-
     function proceed(sourceTypeIndex) {
       Profile.changeProfilePicture(sourceTypeIndex, $scope.AuthData.uid).then(
         function(success){
           loadProfileData();
         }
-
       );
     };
   };

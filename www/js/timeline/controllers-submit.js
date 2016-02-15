@@ -3,22 +3,22 @@ angular.module('starter.controllers-submit', [])
 /**
  * Submit
  */
-.controller('SubmitCtrl', function($scope, $state, 
-    $ionicActionSheet, $ionicSlideBoxDelegate, $ionicHistory, 
+.controller('SubmitCtrl', function($scope, $state,
+    $ionicActionSheet, $ionicSlideBoxDelegate, $ionicHistory, $cordovaGeolocation, $http,
     Profile, Auth, Codes, Utils, CordovaCamera, Timeline) {
-  
+
   $scope.$on('$ionicView.enter', function(e) {
     initData();
     loadProfileData();
   });
-  
+
   // Form
   // ---------------
   function initData() {
     $scope.FormData = {
         meta: {
             text: "",
-            location: "",
+            location: $scope.addLocation(),
         },
         uid: Auth.AuthData.uid,
         timestamp_create: Firebase.ServerValue.TIMESTAMP
@@ -26,7 +26,7 @@ angular.module('starter.controllers-submit', [])
     $scope.FormImages = [];
     $scope.AuthData = Auth.AuthData;
   };
-  
+
   // Profile data
   // ---------------
   function loadProfileData(){
@@ -48,10 +48,10 @@ angular.module('starter.controllers-submit', [])
         );
     };
   };
-  
+
   // Add GPS location
   // ---------------
-  
+
   $scope.addImage = function() {
     // Show the action sheet
     $ionicActionSheet.show({
@@ -80,17 +80,17 @@ angular.module('starter.controllers-submit', [])
       );
     };
   };
-  
+
   $scope.removeImage = function(index) {
     $scope.FormImages.splice(index, 1);
     $ionicSlideBoxDelegate.slide(0);
     $ionicSlideBoxDelegate.update();
   };
-  
+
   $scope.slideHasChanged = function () {
     $ionicSlideBoxDelegate.update();
   };
-  
+
   // Submit
   // ----------------
   $scope.submitPost = function() {
@@ -104,26 +104,39 @@ angular.module('starter.controllers-submit', [])
       Codes.handleError({code: "POST_NEW_CHAR_EXCEEDED"})
     }
   };
-  
+
   // Add location
   // ---------------
   $scope.addLocation = function() {
-    // coming up
+    var posOptions = {enableHighAccuracy: false};
+    $cordovaGeolocation
+      .getCurrentPosition(posOptions)
+      .then(function (position) {
+        var lat  = position.coords.latitude;
+        var long = position.coords.longitude;
+        $http.get("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=true").then(function(response) {
+          $scope.FormData.meta.location = response.data.results[4].formatted_address;
+        });
+
+
+      }, function(err) {
+        // error
+      });
   };
-  
-  
+
+
   // Other
   // ---------------
-  
+
   $scope.close = function() {
     $state.go('tab.timeline');
   };
-  
+
   $scope.returnCount = function() {
     if($scope.FormData){
       return POST_MAX_CHAR - $scope.FormData.meta.text.length;
     }
   };
-  
+
 })
 

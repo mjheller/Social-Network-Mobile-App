@@ -8,20 +8,20 @@
       <p ng-show="status.toggleLoginManual">
         <button class="button button-full-dark" ng-click="login()">Toggle login manually</button>
       </p>
-      
+
     </div> <!-- ./ view is loading... -->
 
     <!-- view has loaded -->
     <div ng-switch-when="false">
-      
+
       <p class="center profile">
         <a ng-click="changeProfilePicture()">
            <img ng-src="{{ProfileData.profilePicture || 'img/ionic.png'}}">
          </a>
       </p>
-      
+
       <ion-list>
-        
+
         <!-- Profile -->
         <ion-item class="item item-divider">
          Profile
@@ -29,30 +29,34 @@
             <ion-spinner ng-show="status.loadingProfile" class="spinner-small"></ion-spinner>
           </span>
         </ion-item>
-        
+
         <ion-item ng-click="changeDisplayName()">
           Display name
           <span class="item-note">
             {{ProfileData.meta.displayName}}
           </span>
         </ion-item>
-        
+
         <ion-item ng-click="changeUsername()">
           Username
           <span class="item-note">
             {{ProfileData.meta.username}}
           </span>
         </ion-item>
-        
+
         <ion-item ng-click="changeProfilePicture()">
           Profile picture
         </ion-item>
-        
+
+        <ion-item ng-click="setGPSLocation()">
+          Location
+        </ion-item>
+
         <ion-item ng-click="other()">
           Other settings
         </ion-item>
         <!-- ./ Profile -->
-      
+
         <!-- Account -->
         <ion-item class="item item-divider">
           Account
