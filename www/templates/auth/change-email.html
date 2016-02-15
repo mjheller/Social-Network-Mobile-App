@@ -1,0 +1,26 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">Change E-mail</h1>
+    <div class="buttons">
+      <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeChangeEmail()"></button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="doChangeEmail()">
+      <div class="list">
+        <label class="item item-input">
+          <input type="email" ng-model="changeEmailData.oldEmail" placeholder="Current E-mail">
+        </label>
+        <label class="item item-input">
+          <input type="email" ng-model="changeEmailData.newEmail"  placeholder="New E-mail">
+        </label>
+        <label class="item item-input">
+          <input type="password" ng-model="changeEmailData.userPassword"  placeholder="Password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-assertive" type="submit">Change E-mail</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

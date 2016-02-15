@@ -1,0 +1,70 @@
+{
+  "rules" : {
+    
+    "users": {
+      "$uid": {
+        // grants write access to the owner of this user account whose uid must exactly match the key ($uid)
+        ".write": "auth !== null && auth.uid === $uid",
+        // grants read access to any user who is logged in --&& auth.provider === 'password'
+        ".read": "auth !== null"
+      }
+    },
+    
+    //".read": "root.child('users').child(auth.uid).child('active').val() == true"
+    "usernames": {
+      "$userName": {
+        // grants write access to the owner of this user account whose uid must exactly match the key ($uid)
+        ".write": "root.child('usernames').child($userName).child('uid').val() == auth.uid || root.child('usernames').child($userName).child('uid').val() == null",
+        // grants read access to any user who is logged in --&& auth.provider === 'password'
+        ".read": "auth !== null"
+      }
+    },
+    
+    "posts_meta": {
+      "$uid": {
+        "$postId": {
+          // grants write access to the owner of this user account whose uid must exactly match the key ($uid)
+          ".write": "auth !== null && $uid == auth.uid || root.child('posts_meta').child($uid).child($postId).val() == null",
+          // grants read access to any user who is logged in --&& auth.provider === 'password'
+          ".read": "auth !== null"
+        },
+        ".read": true
+      },
+      ".read": true
+    },
+    
+    "posts_images": {
+      "$uid": {
+        "$postId": {
+          // grants write access to the owner of this user account whose uid must exactly match the key ($uid)
+          ".write": "auth !== null && $uid == auth.uid || root.child('posts_images').child($uid).child($postId).val() == null",
+          // grants read access to any user who is logged in --&& auth.provider === 'password'
+          ".read": "auth !== null"
+        },
+        ".read": true
+      },
+      ".read": true
+    },
+    
+    "following": {
+      "$uid": {
+        // grants write access to the owner of this user account whose uid must exactly match the key ($uid)
+        ".write": "auth !== null && auth.uid === $uid",
+        // grants read access to any user who is logged in --&& auth.provider === 'password'
+        ".read": "auth !== null"
+      }
+    },
+    
+    "followedBy": {
+      "$fid": {
+        "$uid": {
+          // grants write access to the owner of this user account whose uid must exactly match the key ($uid)
+          ".write": "auth !== null && auth.uid === $uid",
+          // grants read access to any user who is logged in --&& auth.provider === 'password'
+          ".read": "auth !== null"
+        }
+      }
+    }
+    
+  }
+}

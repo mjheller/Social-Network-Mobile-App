@@ -1,0 +1,24 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">Other settings</h1>
+    <div class="buttons">
+      <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeOther()"></button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+
+      <!-- random settings -->
+      <label class="item item-input">
+        <input type="text" ng-model="OtherData.city"  placeholder="City">
+      </label>
+
+      <label class="item item-input">
+        <textarea placeholder="Bio" ng-model="OtherData.bio" rows="4"></textarea>
+      </label>
+
+      <label class="item">
+        <button class="button button-block button-assertive" type="submit" ng-click="saveOtherData()">Save changes</button>
+      </label>
+
+  </ion-content>
+</ion-modal-view>

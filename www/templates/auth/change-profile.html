@@ -1,0 +1,50 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">Profile settings</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="unAuth()">Sign out</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+
+      <p class="center profile">
+         <img ng-src="{{ProfileData.profilePicture || 'img/ionic.png'}}">
+      </p>
+
+      <ion-list>
+
+        <!-- Profile -->
+        <ion-item class="item item-divider">
+         Profile
+          <span class="item-note">
+            <ion-spinner ng-show="status.loadingProfile" class="spinner-small"></ion-spinner>
+          </span>
+        </ion-item>
+
+        <ion-item ng-click="changeDisplayName()">
+          Display name
+          <span class="item-note">
+            {{ProfileData.meta.displayName || 'Not set!'}}
+          </span>
+        </ion-item>
+
+        <ion-item ng-click="changeUsername()">
+          Username
+          <span class="item-note">
+            {{ProfileData.meta.username || 'Not set!'}}
+          </span>
+        </ion-item>
+
+        <ion-item ng-click="changeProfilePicture()">
+          Profile picture
+        </ion-item>
+        <!-- ./ Profile -->
+
+      </ion-list>
+
+      <label class="item">
+        <button class="button button-block button-stable" type="submit" ng-click="finishSetProfile()">Finish</button>
+      </label>
+
+  </ion-content>
+</ion-modal-view>

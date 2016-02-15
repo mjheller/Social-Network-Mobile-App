@@ -12,11 +12,247 @@ $balanced:                        #33cd5f !default;
 $energized:                       #ffc900 !default;
 $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
-$dark:                            #444 !default;
+$dark:                            $base-color !default;
+
+$greylight: #f2f2f2
 */
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
+
+
+// Colors
+// -------------------------------
+$greylight:                            #f2f2f2 !default;
+$positive:                          #F6D127 !default;
+
+// Base
+// -------------------------------
+$font-size-base:                  18px !default;
+$font-size-large:                 20px !default;
+$font-size-small:                 12px !default;
+
+$line-height-base:                1.428571429 !default; // 20/14
+$line-height-computed:            floor($font-size-base * $line-height-base) !default; // ~20px
+$line-height-large:               1.33 !default;
+$line-height-small:               1.5 !default;
+
+$border-radius-base:              12px !default;
+$border-radius-large:             12px !default;
+$border-radius-small:             12px !default;
+
+$base-background-color:           $greylight !default;
+$base-color:                      #515151 !default;
+
+// Content
+// -------------------------------
+
+$scroll-refresh-icon-color:       $base-color !default;
+
+// Buttons
+// -------------------------------
+
+$button-border-radius:            12px !default;
+
+$button-light-bg:                 #fff !default;
+$button-light-text:               $base-color !default;
+$button-light-border:             $greylight !default;
+$button-light-active-bg:          #fafafa !default;
+$button-light-active-border:      #ccc !default;
+
+// fontsize
+$button-font-size:                $font-size-base !default;
+$button-height:                   42px !default;
+$button-padding:                  12px !default;
+$button-icon-size:                26px !default;
+
+$button-large-font-size:          20px !default;
+$button-large-height:             54px !default;
+$button-large-padding:            16px !default;
+$button-large-icon-size:          32px !default;
+
+$button-small-font-size:          16px !default;
+$button-small-height:             28px !default;
+$button-small-padding:            4px !default;
+$button-small-icon-size:          16px !default;
+
+$button-bar-button-font-size:     $font-size-base !default;
+$button-bar-button-height:        32px !default;
+$button-bar-button-padding:       8px !default;
+$button-bar-button-icon-size:     24px !default;
+
+$button-stable-bg:                $positive !default;
+$button-stable-text:              #fff !default;
+$button-stable-border:            #b2b2b2 !default;
+$button-stable-active-bg:         #e5e5e5 !default;
+$button-stable-active-border:     #a2a2a2 !default;
+
+// Bars
+// -------------------------------
+
+$bar-height:                      44px !default;
+$bar-title-font-size:             20px !default;
+
+$bar-light-bg:                    $positive !default; //rgba($button-light-bg, $bar-transparency) !default;
+$bar-light-text:                  #fff !default;
+$bar-light-border:                rgba(0,0,0,0) !default;
+$bar-light-active-bg:             $button-light-active-bg !default;
+$bar-light-active-border:         rgba(0,0,0,0) !default;
+
+$bar-positive-bg:                 $positive !default;
+$bar-positive-text:               #fff !default;
+$bar-positive-border:             rgba(0,0,0,0) !default;
+$bar-positive-active-bg:          $positive !default;
+$bar-positive-active-border:      rgba(0,0,0,0) !default;
+
+
+
+// Items
+// -------------------------------
+
+$item-font-size:                  $font-size-base !default;
+$item-border-width:               1px !default;
+$item-padding:                    16px !default;
+
+$item-default-border:             $greylight !default;
+
+$item-divider-bg:                 $base-background-color !default;
+$item-divider-color:              $base-color !default;
+$item-divider-padding:            5px 15px !default;
+
+$item-stable-border:              $greylight !default;
+
+.item h1, .item h2 {
+    font-size: $font-size-base !important;
+}
+.item p {
+    padding-top: 5px;
+    font-size: $font-size-base !important;
+}
+
+
+// Tabs and Bar
+// -------------------------------
+
+
+
+$tabs-stable-bg:                  #fff !important;
+$tabs-stable-border:              rgba(0,0,0,0) !default;
+$tabs-stable-text:                #base-color !default;
+
+// Login
+// -------------------------------
+.login img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    margin-top: 20px;
+}
+.login p {
+    padding: 0px;
+    margin: 0px;
+}
+
+.login h1 {
+    font-size: 20px;
+    padding: 0px;
+    margin: 20px 0px;
+}
+.row {
+    padding: 0px !important;
+    margin: 0px 0px !important;
+}
+.col {
+    padding: 0px !important;
+    margin: 0px 5px !important;
+}
+.col button {
+    font-size: 16px !important;
+    margin: 0px !important;
+}
+
+// Profile
+// -------------------------------
+.profile img {
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+// Timeline 
+// -------------------------------
+
+.timeline {
+    display: block !important;
+}
+.timeline img {
+    height: 75px;
+    width: 75px;
+    border-radius: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.timeline span {
+    font-size: 14px;
+    color: #DDD;
+    line-height: 16px;
+}
+
+
+// Post
+// -------------------------------
+.post-images {
+    background: #fff;
+}
+.post-images img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+
+// Decorators and Other
+// -------------------------------
+
+.center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.spinner.spinner-small svg {
+    height: 15px !important;
+    width: auto;
+}
+
+span.small {
+    font-size: 12px;
+}
+
+
+// Placeholders
+// -------------------------------
+
+$placeholder-font-size:         $font-size-base !default;
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    font-size: $placeholder-font-size;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size: $placeholder-font-size;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size: $placeholder-font-size;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-size: $placeholder-font-size;
+}
+:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+    font-size: $placeholder-font-size;
+}
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";

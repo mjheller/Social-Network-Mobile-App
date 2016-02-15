@@ -1,4 +1,12 @@
 {
-  "name": "social",
-  "app_id": ""
+  "name": "firebase-social-starter",
+  "app_id": "56307b83",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

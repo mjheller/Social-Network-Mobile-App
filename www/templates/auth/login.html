@@ -1,0 +1,56 @@
+<ion-modal-view>
+
+  <ion-content class="login center padding" style="background-image: url('../../img/blue.jpg')">
+    <!--<ion-content class="login center padding" style="background-color: #000025">-->
+    <br>
+      <img src="../../img/gps.png">
+      <br>
+      <br>
+    <h1 style="color: lightgray"> Social App</h1>
+    <span style="font-size: 80%; color:lightgray">Discover events, chat, and meet people near you</span>
+    <br>
+      <br>
+
+    <div class="list">
+
+
+      <form ng-submit="doLogin()" style="">
+        <label class="item item-input" >
+          <input type="email" ng-model="loginData.userEmail" placeholder="E-mail" ">
+        </label>
+        <label class="item item-input" >
+          <input type="password"  ng-model="loginData.userPassword" placeholder="Password" >
+        </label>
+      </form>
+
+
+
+
+
+      <div class="row">
+        <button class="button button-block button-clear" ng-click="doLogin()">Sign in</button>
+        <div class="col">
+            <a class="button button-block button-clear button icon icon-center ion-social-facebook center" ng-click="doLoginSocial('facebook')"></a>
+        </div>
+        <div class="col">
+            <a class="button button-block button-clear button icon icon-center ion-social-twitter center" ng-click="doLoginSocial('twitter')"></a>
+        </div>
+        <div class="col">
+            <a class="button button-block button-clear button icon icon-center ion-social-google center" ng-click="doLoginSocial('google')"></a>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col">
+           <button class="button button-block button-clear" ng-click="signUp()">Sign up</button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-clear" ng-click="changePassword('lost')">Forgot password?</button>
+        </div>
+      </div>
+
+    </div>
+
+  </ion-content>
+</ion-modal-view>

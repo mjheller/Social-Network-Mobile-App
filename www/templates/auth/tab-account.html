@@ -1,0 +1,84 @@
+<ion-view view-title="Account settings">
+  <ion-content ng-switch="status.loading">
+
+    <!-- view is loading... -->
+    <div ng-switch-when="true" class="padding center">
+      <ion-spinner></ion-spinner>
+
+      <p ng-show="status.toggleLoginManual">
+        <button class="button button-full-dark" ng-click="login()">Toggle login manually</button>
+      </p>
+      
+    </div> <!-- ./ view is loading... -->
+
+    <!-- view has loaded -->
+    <div ng-switch-when="false">
+      
+      <p class="center profile">
+        <a ng-click="changeProfilePicture()">
+           <img ng-src="{{ProfileData.profilePicture || 'img/ionic.png'}}">
+         </a>
+      </p>
+      
+      <ion-list>
+        
+        <!-- Profile -->
+        <ion-item class="item item-divider">
+         Profile
+          <span class="item-note">
+            <ion-spinner ng-show="status.loadingProfile" class="spinner-small"></ion-spinner>
+          </span>
+        </ion-item>
+        
+        <ion-item ng-click="changeDisplayName()">
+          Display name
+          <span class="item-note">
+            {{ProfileData.meta.displayName}}
+          </span>
+        </ion-item>
+        
+        <ion-item ng-click="changeUsername()">
+          Username
+          <span class="item-note">
+            {{ProfileData.meta.username}}
+          </span>
+        </ion-item>
+        
+        <ion-item ng-click="changeProfilePicture()">
+          Profile picture
+        </ion-item>
+        
+        <ion-item ng-click="other()">
+          Other settings
+        </ion-item>
+        <!-- ./ Profile -->
+      
+        <!-- Account -->
+        <ion-item class="item item-divider">
+          Account
+        </ion-item>
+
+        <ion-item ng-click="changeEmail()" ng-show="AuthData.provider == 'password'">
+          E-mail
+          <span class="item-note">
+            {{AuthData.password.email}}
+          </span>
+        </ion-item>
+
+        <ion-item ng-click="changePassword('change')" ng-show="AuthData.provider == 'password'">
+          Password
+          <span class="item-note">
+            ***
+          </span>
+        </ion-item>
+
+        <ion-item ng-click="unAuth()">
+          Sign out
+        </ion-item>
+        <!-- ./ Account -->
+
+      </ion-list>
+
+    </div> <!-- ./ view has loaded -->
+  </ion-content>
+</ion-view>

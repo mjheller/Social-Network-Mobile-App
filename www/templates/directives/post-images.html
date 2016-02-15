@@ -1,0 +1,11 @@
+<div>
+  <ion-slide-box on-slide-changed="slideHasChanged($index)" class="center" >
+    <ion-slide ng-repeat="image in PostsImages[postObj.key] track by $index">
+      
+      <div class="post-images">
+        <img ng-src="{{image}}">
+      </div>
+      
+    </ion-slide>
+  </ion-slide-box>
+</div>

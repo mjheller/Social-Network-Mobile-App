@@ -1,17 +1,1 @@
 /* Empty. Add your own CSS if you like */
-.centered{
-  position: absolute;
-  left:50%;
-  top:50%;
-}
-.scroll-content {
-  display: table !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-image: url('img/city.jpg');
-}
-.scroll {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-}
