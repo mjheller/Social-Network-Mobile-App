@@ -5,18 +5,27 @@ navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-color-active-assertive">
 
+  <!-- feed tab -->
+  <ion-tab title="Feed" icon-off="ion-android-globe" icon-on="ion-android-globe" ui-sref="tab.feed">
+    <ion-nav-view name="tab-feed"></ion-nav-view>
+  </ion-tab>
+
   <!-- Dashboard/Timeline Tab -->
-  <ion-tab title="Timeline" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/timeline/">
+  <ion-tab title="My Posts" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref="tab.timeline">
     <ion-nav-view name="tab-timeline"></ion-nav-view>
   </ion-tab>
 
+  <ion-tab title="Messages" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" ui-sref="tab.chats">
+    <ion-nav-view name="tab-chats"></ion-nav-view>
+  </ion-tab>
+
   <!-- Dashboard Tab -->
-  <ion-tab title="Followers" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/tab/followers">
+  <ion-tab title="Followers" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" ui-sref="tab.followers">
     <ion-nav-view name="tab-followers"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->
-  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account/">
+  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="tab.account">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
 

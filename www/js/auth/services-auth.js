@@ -40,10 +40,10 @@ angular.module('starter.services-auth', [])
         if (AuthData) {
             self.AuthData = AuthData;
             qAuthState.resolve(AuthData);
-            console.log("logged in");
+            //console.log("logged in");
         } else {
             qAuthState.reject("AUTH_LOGGED_OUT");
-            console.log("logged out");
+            //console.log("logged out");
         }
     };
     var ref = new Firebase(FBURL);

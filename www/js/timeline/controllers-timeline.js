@@ -3,10 +3,10 @@ angular.module('starter.controllers-timeline', [])
 /**
  * We use a redirect state to avoid flickering on the start
  */
-.controller('TimelineCtrl', function($scope, $state, $stateParams, 
+.controller('TimelineCtrl', function($scope, $state, $stateParams,
   $ionicSlideBoxDelegate, $ionicPopup, $ionicActionSheet, $ionicHistory,
   Auth, Timeline, Utils, Profile) {
-  
+
   $scope.status = {
     loading: true,
     loadingProfile: false,
@@ -15,13 +15,13 @@ angular.module('starter.controllers-timeline', [])
   $scope.loadingPosts = {
     'image': {},
   };
-  
+
   // used to avoid sticky header
   $scope.$on('$ionicView.leave', function(){
     $ionicHistory.clearHistory();
     $ionicHistory.clearCache();
   });
-    
+
   $scope.$on('$ionicView.enter', function(){
     if($stateParams.uid != undefined && $stateParams.uid != null && $stateParams.uid != "") {
       // view the timeline of user
@@ -37,28 +37,28 @@ angular.module('starter.controllers-timeline', [])
       }
     };
   });
-  
+
   $scope.doRefresh = function() {
     // do not toggle loadingmode when just refresh
     loadTimeline();
   };
-  
+
   function reLoad() {
-    
+
     $scope.ProfileData = {};
     $scope.PostsData = {};
-        
+
     $scope.status['loading'] = true; // toggle loading mode when enter
     loadTimeline();
     loadProfileData();
   };
-  
+
   // ------
-  
-  
+
+
   $scope.ProfileData = {};
   function loadProfileData() {
-    console.log($scope.status['uid'])
+    //console.log($scope.status['uid'])
     $scope.status['loadingProfile'] = true;
     if($scope.status['uid']){
       Profile.get($scope.status['uid']).then(
@@ -74,7 +74,7 @@ angular.module('starter.controllers-timeline', [])
       }
     };
   };
-  
+
   $scope.PostsData= {};
   function loadTimeline() {
     Timeline.getAllPosts($scope.status['uid']).then(
@@ -89,7 +89,7 @@ angular.module('starter.controllers-timeline', [])
         };
         $scope.status['loading'] = false;
         $scope.$broadcast('scroll.refreshComplete');
-        
+
         //@dependencies
         formatOther(PostsData);
         loadPostsImages(PostsData);
@@ -102,10 +102,10 @@ angular.module('starter.controllers-timeline', [])
       }
     )
   };
-  
+
   $scope.PostsImages = {};
   function loadPostsImages(PostsData) {
-    
+
     angular.forEach(PostsData, function(value, postId){
       $scope.loadingPosts['image'][postId] = true;
       Timeline.getImages($scope.status['uid'], postId).then(
@@ -124,7 +124,7 @@ angular.module('starter.controllers-timeline', [])
       )
     })
   };
-  
+
   // additional formatting
   $scope.PostsDataOther = {};
   function formatOther(PostsData) {
@@ -134,7 +134,7 @@ angular.module('starter.controllers-timeline', [])
       };
     });
   };
-  
+
   $scope.moreOptions = function(postId, uid) {
     // Show the action sheet
     if($scope.AuthData.uid == uid) {
@@ -163,7 +163,7 @@ angular.module('starter.controllers-timeline', [])
          return true;
        }
       });
-      
+
       /**
       $timeout(function() {
        hideSheet();
@@ -171,7 +171,7 @@ angular.module('starter.controllers-timeline', [])
       */
     }
   };
-  
+
   function deletePost(postId) {
     // A confirm dialog
     var confirmPopup = $ionicPopup.confirm({
@@ -190,21 +190,21 @@ angular.module('starter.controllers-timeline', [])
      }
     );
   };
-  
+
   $scope.newPost = function() {
     $state.go('submit');
   };
-  
+
   $scope.goToProfile = function() {
     $ionicHistory.nextViewOptions({
       disableBack: true
     });
     $state.go('tab.timeline', {uid: $scope.AuthData.uid});
   };
-  
+
   $scope.slideHasChanged = function () {
     $ionicSlideBoxDelegate.update();
   };
-  
+
 })
 

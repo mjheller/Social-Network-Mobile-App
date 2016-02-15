@@ -302,8 +302,8 @@ angular.module('starter.controllers-account', [])
                 Utils.showMessage("Password Changed!");
                 //
                 $scope.loginData = {
-                    userEmail:      $scope.changePasswordData.userEmail,
-                    userPassword:   $scope.changePasswordData.newPassword,
+                    userEmail: $scope.changePasswordData.userEmail,
+                    userPassword: $scope.changePasswordData.newPassword,
                 }
                 $scope.doLogin();
 

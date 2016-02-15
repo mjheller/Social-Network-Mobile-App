@@ -107,9 +107,9 @@ angular.module('starter.services-profile', [])
     } else {}
 
   };
-                                                            ///////////////////////////////
+
   self.setUserLocation = function(uid, locationString){
-      self.setGlobal(uid,'location', locationString)
+      self.setGlobal(uid,'location', locationString);
   }
 
   // VALIDATE   usernames/$username === null

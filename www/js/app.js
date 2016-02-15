@@ -11,9 +11,11 @@ angular.module('starter', [
   // timeline and followers
   'starter.controllers-timeline',
   'starter.controllers-submit',
+  //'starter.controllers-chat',
   'starter.controllers-followers',
   'starter.services-followers',
   'starter.services-timeline',
+
 
   // auth and profile
   'starter.controllers-account',
@@ -85,6 +87,18 @@ angular.module('starter', [
 
   // Each tab has its own nav history stack:
 
+  // view feed
+    .state('tab.feed', {
+      url: '/feed',
+      views: {
+        'tab-feed': {
+          templateUrl: 'templates/timeline/tab-feed.html',
+          controller: '',
+          resolve: {authResolve: authResolve}
+
+        }
+      }
+    })
   // view timeline
   .state('tab.timeline', {
     url: '/timeline/:uid',
@@ -96,7 +110,17 @@ angular.module('starter', [
       }
     }
   })
-
+    //Messaging tab
+    .state('tab.chats',{
+      url:'/chats',
+      views:{
+        'tab-chats':{
+          templateUrl: 'templates/timeline/tab-chats.html',
+          controller: '',
+          resolve: {authResolve: authResolve}
+        }
+      }
+    })
   // manage followers
   .state('tab.followers', {
     url: '/followers',
