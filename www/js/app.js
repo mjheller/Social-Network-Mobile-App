@@ -17,8 +17,6 @@ angular.module('starter', [
   'starter.controllers-feed',
   'starter.services-feed',
 
-
-
   // auth and profile
   'starter.controllers-account',
   'starter.services-auth',
@@ -99,6 +97,28 @@ angular.module('starter', [
       }
     }
   })
+      .state('tab.feed.feed-data', {
+        url:'/feed-data',
+        //views:{
+          //'feed-data': {
+          //  parent: 'feed-data',
+            templateUrl: 'templates/timeline/childviews/Nightlife.html',
+            controller: 'FeedCtrl',
+            resolve: {authResolve: authResolve}
+        //  }
+        //}
+      })
+
+      .state('tab.feed.Nightlife', {
+        url:'/Nightlife',
+        views:{
+        'Nightlife': {
+          templateUrl: 'templates/timeline/childviews/Nightlife.html',
+          controller: '',
+          resolve: {authResolve: authResolve}
+          }
+        }
+      })
   // view timeline
   .state('tab.timeline', {
     url: '/timeline/:uid',

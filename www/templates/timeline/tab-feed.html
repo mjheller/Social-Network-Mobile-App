@@ -1,41 +1,11 @@
-
-<!--<ion-nav-bar></ion-nav-bar>-->
-<!--<ion-side-menus>-->
-
-  <!--<ion-side-menu-content>-->
-    <!--<ion-nav-bar class="bar-stable nav-title-slide-ios7">-->
-      <!--<ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>-->
-    <!--</ion-nav-bar>-->
-    <!--<ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>-->
-  <!--</ion-side-menu-content>-->
-
-  <!--<ion-side-menu side="left">-->
-    <!--&lt;!&ndash;<header class="bar bar-header bar-stable">&ndash;&gt;-->
-      <!--&lt;!&ndash;<h1 class="title">Left</h1>&ndash;&gt;-->
-    <!--&lt;!&ndash;</header>&ndash;&gt;-->
-    <!--<ion-content class="has-header">-->
-      <!--<ion-list>-->
-        <!--<ion-item menu-close >Nightlife</ion-item>-->
-        <!--<ion-item menu-close >Events</ion-item>-->
-        <!--<ion-item menu-close >Sports/Fitness</ion-item>-->
-        <!--<ion-item menu-close >Food</ion-item>-->
-        <!--<ion-item menu-close >Trending</ion-item>-->
-      <!--</ion-list>-->
-    <!--</ion-content>-->
-  <!--</ion-side-menu>-->
-<!--</ion-side-menus>-->
-
-
-
-
 <ion-nav-bar></ion-nav-bar>
 <ion-view view-title="Feed">
 
-  <ion-nav-buttons side="left">
-    <!-- Toggle left side menu -->
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  <!--<ion-nav-buttons side="left">-->
+    <!--&lt;!&ndash; Toggle left side menu &ndash;&gt;-->
+    <!--<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>-->
 
-  </ion-nav-buttons>
+  <!--</ion-nav-buttons>-->
 
 <ion-side-menus>
 
@@ -47,32 +17,38 @@
 <!--</ion-nav-buttons>-->
 
 <!--</ion-nav-bar>-->
-<!-- Left menu -->
+ <!--Left menu-->
+
+
+  <ion-side-menu-content>
+    <ion-nav-bar>
+      <ion-nav-buttons side="left">
+        <!-- Toggle left side menu -->
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+
+      </ion-nav-buttons>
+
+    </ion-nav-bar>
+
+
+    <ion-nav-view name="Nightlife" animation="slide-left-right"></ion-nav-view>
+  </ion-side-menu-content>
+
 
   <ion-side-menu side="left">
+    <header class="bar bar-header">
+      <h1 class="title">Topics</h1>
+    </header>
 
-<header class="bar bar-header">
-<h1 class="title">Left</h1>
-</header>
-  <ion-content scroll="true">
-    <ion-list>
-      <ion-item menu-close ng-repeat="topic in topics" ui-sref="tab.feed.{{topic.text}}">
-    <!-- <i ng-class="item.iconClass"></i> -->
-        {{topic.text}}
-      </ion-item>
-<!--<ion-item menu-close >Nightlife</ion-item>-->
-<!--<ion-item menu-close >Events</ion-item>-->
-<!--<ion-item menu-close >Sports/Fitness</ion-item>-->
-<!--<ion-item menu-close >Food</ion-item>-->
-<!--<ion-item menu-close >Trending</ion-item>-->
-    </ion-list>
-  </ion-content>
-</ion-side-menu>
-
-<ion-side-menu-content>
-
-<!-- Main content, usually <ion-nav-view> -->
-</ion-side-menu-content>
+    <ion-content scroll="true" class="has-header">
+      <ion-list>
+        <ion-item menu-close ng-repeat="topic in topics" ui-sref="tab.feed.{{topic.text}}">
+      <!--<ion-item menu-close ng-repeat="topic in topics" ui-sref="tab.feed.feed-data">-->
+          {{topic.text}}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
 
 </ion-side-menus>
 

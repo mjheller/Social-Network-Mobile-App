@@ -1,0 +1,16 @@
+<ion-view title="Trending">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <div>
+            Hello Nested View
+        </div>
+        <ion-list>
+            <!-- put the current topic into $scope so can access with scope.topic instead of hardcode -->
+            <ion-item <!--ng-repeat="post in posts | filter:{topic: 'nightlife'}:true" ui-sref=""--> >
+            {{post.content}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

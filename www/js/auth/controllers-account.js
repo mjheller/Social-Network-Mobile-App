@@ -551,13 +551,16 @@ angular.module('starter.controllers-account', [])
               var long = position.coords.longitude;
               console.log(lat,long);
               $http.get("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=true").then(function(response) {
-                console.log(response.data.results[4].formatted_address);
-                Profile.setUserLocation($scope.AuthData.uid,response.data.results[4].formatted_address);
+                console.log(response.data.results[5].formatted_address);
+                var loc = response.data.results[5].formatted_address
+                Profile.setUserLocation($scope.AuthData.uid, loc);
+                return true;
+
               });
 
 
             }, function(err) {
-              // error
+              console.log('ERROR')
             });
         }
       }
