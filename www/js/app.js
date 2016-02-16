@@ -6,15 +6,17 @@ angular.module('starter', [
   'ngCordova',
   'firebase',
 
-
-
   // timeline and followers
   'starter.controllers-timeline',
   'starter.controllers-submit',
-  //'starter.controllers-chat',
+
   'starter.controllers-followers',
   'starter.services-followers',
   'starter.services-timeline',
+  'starter.controllers-chat',
+  'starter.controllers-feed',
+  'starter.services-feed',
+
 
 
   // auth and profile
@@ -30,7 +32,6 @@ angular.module('starter', [
   'starter.services-codes',
   'starter.services-utils',
   'starter.services-fb-functions',
-  //'starter.services-geo',
   'starter.directives'
   ]
 )
@@ -88,17 +89,16 @@ angular.module('starter', [
   // Each tab has its own nav history stack:
 
   // view feed
-    .state('tab.feed', {
-      url: '/feed',
-      views: {
-        'tab-feed': {
-          templateUrl: 'templates/timeline/tab-feed.html',
-          controller: '',
-          resolve: {authResolve: authResolve}
-
-        }
+  .state('tab.feed', {
+    url: '/feed',
+    views: {
+      'tab-feed': {
+        templateUrl: 'templates/timeline/tab-feed.html',
+        controller: 'FeedCtrl',
+        resolve: {authResolve: authResolve}
       }
-    })
+    }
+  })
   // view timeline
   .state('tab.timeline', {
     url: '/timeline/:uid',
@@ -153,6 +153,6 @@ angular.module('starter', [
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/timeline/');
+  $urlRouterProvider.otherwise('/tab/feed');
 
 })

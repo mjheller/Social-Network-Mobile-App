@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="starter">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval'
@@ -9,12 +9,13 @@
     <title></title>
 
     <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
-
+    <link href="http://code.ionicframework.com/1.0.0-beta.6/css/ionic.css" rel="stylesheet">
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
 
     <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+    <!--<script src="lib/ionic/js/ionic.bundle.min.js"></script> -->
+    <script src="http://code.ionicframework.com/1.2.4/js/ionic.bundle.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
@@ -25,12 +26,18 @@
     <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
 
     <!-- your app's js -->
+
     <script src="js/app.js"></script>
     <script src="js/timeline/controllers-timeline.js"></script>
     <script src="js/timeline/controllers-submit.js"></script>
     <script src="js/timeline/controllers-followers.js"></script>
+    <script src="js/timeline/controllers-chat.js"></script>
+    <script src="js/timeline/controllers-feed.js"></script>
+
+
     <script src="js/timeline/services-followers.js"></script>
     <script src="js/timeline/services-timeline.js"></script>
+    <script src="js/timeline/services-feed.js"></script>
 
     <script src="js/cordova/services-cordova-camera.js"></script>
 
@@ -44,7 +51,7 @@
     <script src="js/directives.js"></script>
 
   </head>
-  <body ng-app="starter">
+  <body >
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
