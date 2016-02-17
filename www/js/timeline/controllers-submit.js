@@ -6,18 +6,20 @@ angular.module('starter.controllers-submit', [])
 
 
           $scope.$on('$ionicView.enter', function(e) {
-            initData();
             loadProfileData();
+            initData();
 
           });
 
           // Form
           // ---------------
           function initData() {
-              $scope.topic = currentTopic.getStateParams().topic;
-              console.log($scope.topic);
+            $scope.topic = currentTopic.getStateParams().topic;
+            console.log($scope.topic);
             $scope.FormData = {
                 meta: {
+                    username: $scope.ProfileData.meta.username,
+                    thumbnail: $scope.ProfileData.profilePicture,
                     text: "",
                     topic: $scope.topic,
                     location: $scope.addLocation(),
@@ -40,7 +42,7 @@ angular.module('starter.controllers-submit', [])
                 // otherwise load (note: AuthData.uid is resolved)
                 Profile.get(Auth.AuthData.uid).then(
                     function(ProfileData){
-                        console.log(ProfileData);
+                        //console.log(ProfileData);
                         $scope.ProfileData = ProfileData;
                     },
                     function(error){

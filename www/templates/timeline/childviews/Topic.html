@@ -5,10 +5,13 @@
         <!-- put the current topic into $scope so can access with scope.topic instead of hardcode -->
 
          <!--<ion-item ng-repeat="post in posts |filter:{topic: 'nightlife'}:true">&ndash;&gt;-->
-            <ion-item ng-repeat="post in posts"  >
+
+            <ion-item ng-click="moreOptions(post.key, post.value.uid)"  class="item item-avatar item-text-wrap" ng-repeat="post in posts"  >
                 <!--{{post.meta.text}}-->
                 <!--{{post.value.timestamp_create}}-->
-                {{post.value.meta.text}}
+                <img ng-src="{{post.value.meta.thumbnail}}">
+                     <p>{{post.value.meta.username}}</p>
+                <p>{{post.value.meta.text}}</p>
                 <!--{{post.value.meta.location}}-->
             </ion-item>
         </ion-list>
