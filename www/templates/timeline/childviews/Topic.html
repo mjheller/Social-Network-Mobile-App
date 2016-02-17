@@ -1,10 +1,10 @@
 <ion-view cache-view="false">
-    <ion-nav-title> {{ topic }} </ion-nav-title>
+    <ion-nav-title> {{ topic }} {{location}} </ion-nav-title>
     <ion-content>
         <ion-list>
         <!-- put the current topic into $scope so can access with scope.topic instead of hardcode -->
 
-         <!--<ion-item ng-repeat="post in posts |filter:{topic: 'nightlife'}:true">&ndash;&gt;-->
+         <!--locationMatcher($scope.location)-->
             <!--<ion-item ng-click="moreOptions(post.key, post.value.uid)"  class="item item-avatar item-text-wrap" ng-repeat="post in posts | filter: { value: { meta: { topic: 'Trending' }}}:true">-->
             <ion-item ng-click="moreOptions(post.key, post.value.uid)"  class="item item-avatar item-text-wrap" ng-repeat="post in posts | filter: topicMatcher($scope.topic)">
                 <!--{{post.meta.text}}-->

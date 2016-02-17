@@ -32,6 +32,8 @@ angular.module('starter.controllers-feed', ['ionic'])
         });
 
         $scope.$on('$ionicView.enter', function(){
+            loadProfileData()
+
             if($stateParams.uid != undefined && $stateParams.uid != null && $stateParams.uid != "") {
                 // view the timeline of user
                 $scope.status['uid'] = $stateParams.uid;
@@ -49,9 +51,41 @@ angular.module('starter.controllers-feed', ['ionic'])
             };
         });
 
+
+        // Profile data
+        // ---------------
+        function loadProfileData(){
+            // check if in cash
+            if(Profile.ProfileData.hasOwnProperty('meta')){
+                $scope.ProfileData = Profile.ProfileData;
+                $scope.location = $scope.ProfileData.location;
+            } else {
+                // otherwise load (note: AuthData.uid is resolved)
+                Profile.get(Auth.AuthData.uid).then(
+                    function(ProfileData){
+                        //console.log(ProfileData);
+                        $scope.ProfileData = ProfileData;
+                        $scope.location = $scope.ProfileData.location;
+                    },
+                    function(error){
+                        console.log(error);
+                        $scope.ProfileData = {};
+                        Utils.showMessage('Oops... profile data not loaded', 1500)
+                    }
+                );
+            };
+
+        };
+
         $scope.topicMatcher = function(topicFilter) {
             return function(post) {
                 return post.value.meta.topic === $scope.topic;
+            }
+        };
+
+        $scope.locationMatcher = function(locationFilter){
+            return function(location){
+                return post.value.meta.location === $scope.location;
             }
         };
 
