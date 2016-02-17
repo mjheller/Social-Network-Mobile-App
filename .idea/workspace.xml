@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bf3d0bf-8e9d-4266-9c6c-f210141b4203" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/timeline/controllers-submit.js" afterPath="$PROJECT_DIR$/www/js/timeline/controllers-submit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/timeline/controllers-feed.js" afterPath="$PROJECT_DIR$/www/js/timeline/controllers-feed.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/timeline/childviews/Topic.html" afterPath="$PROJECT_DIR$/www/templates/timeline/childviews/Topic.html" />
     </list>
     <ignored path="capstone.iws" />
@@ -68,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/www/js/timeline/controllers-feed.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="128" column="10" selection-start-line="128" selection-start-column="10" selection-end-line="128" selection-end-column="10" />
+              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -117,8 +117,8 @@
       <file leaf-file-name="Topic.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/timeline/childviews/Topic.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21186441">
-              <caret line="10" column="54" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.3601695">
+              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -171,9 +171,9 @@
         <option value="$PROJECT_DIR$/www/js/timeline/services-timeline.js" />
         <option value="$PROJECT_DIR$/www/js/timeline/services-feed.js" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
-        <option value="$PROJECT_DIR$/www/js/timeline/controllers-feed.js" />
         <option value="$PROJECT_DIR$/www/templates/timeline/tab-feed.html" />
         <option value="$PROJECT_DIR$/www/js/timeline/controllers-submit.js" />
+        <option value="$PROJECT_DIR$/www/js/timeline/controllers-feed.js" />
         <option value="$PROJECT_DIR$/www/templates/timeline/childviews/Topic.html" />
       </list>
     </option>
@@ -840,14 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/timeline/controllers-feed.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="128" column="10" selection-start-line="128" selection-start-column="10" selection-end-line="128" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/timeline/tab-timeline.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.625">
@@ -856,10 +848,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/timeline/controllers-feed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/timeline/childviews/Topic.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21186441">
-          <caret line="10" column="54" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.3601695">
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
           <folding />
         </state>
       </provider>

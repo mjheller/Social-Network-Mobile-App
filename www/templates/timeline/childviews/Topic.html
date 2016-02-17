@@ -5,14 +5,15 @@
         <!-- put the current topic into $scope so can access with scope.topic instead of hardcode -->
 
          <!--<ion-item ng-repeat="post in posts |filter:{topic: 'nightlife'}:true">&ndash;&gt;-->
-
-            <ion-item ng-click="moreOptions(post.key, post.value.uid)"  class="item item-avatar item-text-wrap" ng-repeat="post in posts"  >
+            <!--<ion-item ng-click="moreOptions(post.key, post.value.uid)"  class="item item-avatar item-text-wrap" ng-repeat="post in posts | filter: { value: { meta: { topic: 'Trending' }}}:true">-->
+            <ion-item ng-click="moreOptions(post.key, post.value.uid)"  class="item item-avatar item-text-wrap" ng-repeat="post in posts | filter: topicMatcher($scope.topic)">
                 <!--{{post.meta.text}}-->
                 <!--{{post.value.timestamp_create}}-->
                 <img ng-src="{{post.value.meta.thumbnail}}">
-                     <p>{{post.value.meta.username}}</p>
+                <p>{{post.value.meta.username}}</p>
                 <p>{{post.value.meta.text}}</p>
-                <!--{{post.value.meta.location}}-->
+                <p>{{post.value.timestamp_create | date:'MM-dd-yyyy HH:mm:ss'}}</p>
+
             </ion-item>
         </ion-list>
     </ion-content>

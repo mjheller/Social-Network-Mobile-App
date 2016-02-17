@@ -49,6 +49,12 @@ angular.module('starter.controllers-feed', ['ionic'])
             };
         });
 
+        $scope.topicMatcher = function(topicFilter) {
+            return function(post) {
+                return post.value.meta.topic === $scope.topic;
+            }
+        };
+
         $scope.doRefresh = function() {
             // do not toggle loadingmode when just refresh
             loadFeed();
