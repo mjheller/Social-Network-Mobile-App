@@ -157,6 +157,45 @@ angular.module('starter.controllers-feed', ['ionic'])
                 }
             )
         };
+        $scope.moreOptions = function(postId, uid) {
+            // Show the action sheet
+            if($scope.AuthData.uid == uid) {
+                var hideSheet = $ionicActionSheet.show({
+                    buttons: [
+                        { text: 'Like'},
+                        { text: 'Reply' },
+                        { text: 'View profile' },
+                        { text: 'Follow'},
+                    ],
+                    //destructiveText: 'Delete',
+                    titleText: 'Post options',
+                    cancelText: 'Cancel',
+                    cancel: function() {
+                        // add cancel code..
+                    },
+                    buttonClicked: function(index) {
+                        switch(index) {
+                            case 0:
+                                //
+                                window.alert("Do something else")
+                                break
+                        }
+                        return true;
+                    },
+                    //destructiveButtonClicked: function() {
+                    //    deletePost(postId);
+                    //    hideSheet();
+                    //    return true;
+                    //}
+                });
+
+                /**
+                 $timeout(function() {
+       hideSheet();
+      }, 2000);
+                 */
+            }
+        };
 
         // additional formatting
         $scope.PostsDataOther = {};

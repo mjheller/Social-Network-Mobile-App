@@ -541,33 +541,36 @@ angular.module('starter.controllers-account', [])
       cancel: function () {
         // add cancel code..
       },
-      buttonClicked: function(index) {
-        if (index === 0){
+      buttonClicked: function (index) {
+        if (index === 0) {
           var posOptions = {enableHighAccuracy: false};
           $cordovaGeolocation
-            .getCurrentPosition(posOptions)
-            .then(function (position) {
-              var lat  = position.coords.latitude;
-              var long = position.coords.longitude;
-              console.log(lat,long);
-              $http.get("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=true").then(function(response) {
-                console.log(response.data.results[5].formatted_address);
-                var loc = response.data.results[5].formatted_address
-                Profile.setUserLocation($scope.AuthData.uid, loc);
-                return true;
+              .getCurrentPosition(posOptions)
+              .then(function (position) {
+                var lat = position.coords.latitude;
+                var long = position.coords.longitude;
+                console.log(lat, long);
+                $http.get("http://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + long + "&sensor=true").then(function (response) {
+                  console.log(response.data.results[3].formatted_address);
+                  var loc = response.data.results[3].formatted_address
+                  Profile.setUserLocation($scope.AuthData.uid, loc);
+                  loadProfileData();
 
+                });
               });
-
-
-            }, function(err) {
-              console.log('ERROR')
-            });
         }
+        ;
+
+        if (index === 1) {
+          //add manual selection logic here
+        }
+        ;
       }
-
     });
-
   };
+
+
+
   // fn update profile picture
   $scope.changeProfilePicture = function() {
     // Show the action sheet
