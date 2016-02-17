@@ -98,11 +98,11 @@ angular.module('starter', [
     }
   })
       .state('tab.feed.feed-data', {
-        url:'/feed-data',
+        url:'/Topic/:topic',
         //views:{
           //'feed-data': {
           //  parent: 'feed-data',
-            templateUrl: 'templates/timeline/childviews/Nightlife.html',
+            templateUrl: 'templates/timeline/childviews/feed-data.html',
             controller: 'FeedCtrl',
             resolve: {authResolve: authResolve}
         //  }
@@ -116,6 +116,46 @@ angular.module('starter', [
           templateUrl: 'templates/timeline/childviews/Nightlife.html',
           controller: '',
           resolve: {authResolve: authResolve}
+          }
+        }
+      })
+      .state('tab.feed.Events', {
+        url:'/Events',
+        views:{
+          'Nightlife': {
+            templateUrl: 'templates/timeline/childviews/Events.html',
+            controller: '',
+            resolve: {authResolve: authResolve}
+          }
+        }
+      })
+      .state('tab.feed.Fitness', {
+        url:'/Fitness',
+        views:{
+          'Nightlife': {
+            templateUrl: 'templates/timeline/childviews/Fitness.html',
+            controller: '',
+            resolve: {authResolve: authResolve}
+          }
+        }
+      })
+      .state('tab.feed.Sports', {
+        url:'/Sports',
+        views:{
+          'Nightlife': {
+            templateUrl: 'templates/timeline/childviews/Sports.html',
+            controller: '',
+            resolve: {authResolve: authResolve}
+          }
+        }
+      })
+      .state('tab.feed.Trending', {
+        url:'/Trending',
+        views:{
+          'Nightlife': {
+            templateUrl: 'templates/timeline/childviews/Trending.html',
+            controller: '',
+            resolve: {authResolve: authResolve}
           }
         }
       })

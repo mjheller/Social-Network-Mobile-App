@@ -18,12 +18,14 @@ angular.module('starter.controllers-submit', [])
     $scope.FormData = {
         meta: {
             text: "",
+            topic: "",
             location: $scope.addLocation(),
+            images: [],
         },
         uid: Auth.AuthData.uid,
         timestamp_create: Firebase.ServerValue.TIMESTAMP
     };
-    $scope.FormImages = [];
+    //$scope.FormImages = [];
     $scope.AuthData = Auth.AuthData;
   };
 
@@ -49,8 +51,6 @@ angular.module('starter.controllers-submit', [])
     };
   };
 
-  // Add GPS location
-  // ---------------
 
   $scope.addImage = function() {
     // Show the action sheet
@@ -73,7 +73,8 @@ angular.module('starter.controllers-submit', [])
       CordovaCamera.newImage(sourceTypeIndex, 800).then(
         function(ImageData){
             if(ImageData != null) {
-                $scope.FormImages.push(ImageData);
+                //$scope.FormImages.push(ImageData);  old way
+                $scope.FormData.images.push(imageData) //new way
                 $ionicSlideBoxDelegate.update();
             }
         }
@@ -91,21 +92,35 @@ angular.module('starter.controllers-submit', [])
     $ionicSlideBoxDelegate.update();
   };
 
-  // Submit
-  // ----------------
-  $scope.submitPost = function() {
-    if($scope.returnCount()>=0){
-      Timeline.addPost($scope.AuthData.uid, $scope.FormData, $scope.FormImages).then(
-        function(success){
-          $state.go('tab.timeline');
-          initData();
-        })
-    } else {
-      Codes.handleError({code: "POST_NEW_CHAR_EXCEEDED"})
-    }
-  };
+  //// Submit               OLD
+  //// ----------------
+  //$scope.submitPost = function() {
+  //  if($scope.returnCount()>=0){
+  //    Timeline.addPost($scope.AuthData.uid, $scope.FormData, $scope.FormImages).then(
+  //      function(success){
+  //        $state.go('tab.timeline');
+  //        initData();
+  //      })
+  //  } else {
+  //    Codes.handleError({code: "POST_NEW_CHAR_EXCEEDED"})
+  //  }
+  //};
 
-  // Add location
+    // Submit
+    // ----------------
+    $scope.submitPost = function() {
+        if($scope.returnCount()>=0){
+            Timeline.addPost($scope.AuthData.uid, $scope.FormData).then(
+                function(success){
+                    $state.go('tab.timeline');
+                    initData();
+                })
+        } else {
+            Codes.handleError({code: "POST_NEW_CHAR_EXCEEDED"})
+        }
+    };
+
+  // Add GPS location
   // ---------------
   $scope.addLocation = function() {
     var posOptions = {enableHighAccuracy: false};
@@ -115,7 +130,7 @@ angular.module('starter.controllers-submit', [])
         var lat  = position.coords.latitude;
         var long = position.coords.longitude;
         $http.get("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=true").then(function(response) {
-          $scope.FormData.meta.location = response.data.results[4].formatted_address;
+          $scope.FormData.meta.location = response.data.results[5].formatted_address;
         });
 
 
@@ -129,7 +144,7 @@ angular.module('starter.controllers-submit', [])
   // ---------------
 
   $scope.close = function() {
-    $state.go('tab.timeline');
+    $state.go('tab.feed');
   };
 
   $scope.returnCount = function() {

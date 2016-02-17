@@ -1,8 +1,5 @@
 angular.module('starter.controllers-timeline', [])
 
-/**
- * We use a redirect state to avoid flickering on the start
- */
 .controller('TimelineCtrl', function($scope, $state, $stateParams,
   $ionicSlideBoxDelegate, $ionicPopup, $ionicActionSheet, $ionicHistory,
   Auth, Timeline, Utils, Profile) {
@@ -75,9 +72,15 @@ angular.module('starter.controllers-timeline', [])
     };
   };
 
+  function loadFeed(){
+
+  }
+
+
+
   $scope.PostsData= {};
   function loadTimeline() {
-    Timeline.getAllPosts($scope.status['uid']).then(
+    Timeline.getMyPosts($scope.status['uid']).then(
       function(PostsData){
         if(PostsData != null) {
           // convert to array for sorting in ng-repeat without filters

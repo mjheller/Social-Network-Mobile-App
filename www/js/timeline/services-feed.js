@@ -8,3 +8,19 @@ angular.module('starter.services-feed', [])
         }
     }
 })
+
+.service('currentTopic', function($stateParams,$http){
+    var getTopic = function($stateParams) {
+        var topic = $http.get($stateParams.topic);
+        return topic
+    };
+    var getStateParams = function() {
+        return $stateParams;
+    };
+
+    return {
+        getTopic: getTopic,
+        getStateParams: getStateParams,
+    };
+})
+

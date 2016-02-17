@@ -1,16 +1,19 @@
 angular.module('starter.services-timeline', [])
 
-/**
- * General Wrapper for Timeline
- * This version: 25/07/2015
- * 
- * Upcoming versions: include FireChatish
- */
 .factory('Timeline', function($q, Profile, Utils, Codes) {
     var self = this;
-    
+
+    self.getFeed = function(){
+        var qGet = $q.defer();
+        var ref = new Firebase(FBURL+'/posts')
+        ref.on("value", function(allPosts) {
+            qGet.resolve(allPosts.val());
+        });
+        return qGet.promise;
+    };
+
     // retrieves all posts of the user
-    self.getAllPosts = function(uid) {
+    self.getMyPosts = function(uid) {
         var qGet = $q.defer();
         var ref = new Firebase(FBURL);
         
@@ -27,7 +30,8 @@ angular.module('starter.services-timeline', [])
         });
         return qGet.promise;
     };
-    
+
+
     // retrieves all images for the specific post
     self.getImages = function(uid, postId){
         var qGet = $q.defer();
@@ -47,20 +51,42 @@ angular.module('starter.services-timeline', [])
         return qGet.promise;
     };
     
-    // multi-location add
-    // *** todo: add indexing for enhanced loading
-    //           to be added in version 2.1
-    self.addPost = function(uid, FormData, FormImages) {
+
+    //self.addPost = function(uid, FormData , FormImages) {        old
+    //    var qAdd = $q.defer();
+    //    var ref = new Firebase(FBURL);
+    //    var postId = generatePostId();
+    //
+    //    Utils.showMessage('Adding post...');
+    //
+    //    var paths = {};
+    //    paths['/posts_meta/' + uid + '/' + postId]      = FormData;
+    //    paths['/posts_images/' + uid + '/' + postId]    = FormImages;
+    //
+    //    var onComplete = function(error) {
+    //        if (error) {
+    //            Codes.handleError(error);
+    //            qAdd.reject(error);
+    //        } else {
+    //            Utils.showMessage('Post added!', 1500);
+    //            qAdd.resolve("POST_ADD_SUCCESS");
+    //        }
+    //    }
+    //    ref.update(paths, onComplete);
+    //    return qAdd.promise;
+    //};
+
+    self.addPost = function(uid,FormData) {      // new
         var qAdd = $q.defer();
         var ref = new Firebase(FBURL);
         var postId = generatePostId();
-        
+
         Utils.showMessage('Adding post...');
-        
+
         var paths = {};
-        paths['/posts_meta/' + uid + '/' + postId]      = FormData;
-        paths['/posts_images/' + uid + '/' + postId]    = FormImages;
-        
+        paths['/posts/' + postId] = FormData;
+        paths['/posts_meta/' + uid + '/' + postId] = FormData;
+
         var onComplete = function(error) {
             if (error) {
                 Codes.handleError(error);
@@ -74,15 +100,15 @@ angular.module('starter.services-timeline', [])
         return qAdd.promise;
     };
     
-    // multi-location delete
+    // multi-location delete                     old
     self.deletePost = function(uid, postId) {
         var qDelete = $q.defer();
         var ref = new Firebase(FBURL);
-        
+
         var paths = {};
         paths['/posts_meta/' + uid + '/' + postId]      = null;
-        paths['/posts_images/' + uid + '/' + postId]    = null;
-        
+        paths['/posts/' + postId]    = null;
+
         var onComplete = function(error) {
             if (error) {
                 Codes.handleError(error);
@@ -95,9 +121,8 @@ angular.module('starter.services-timeline', [])
         ref.update(paths, onComplete);
         return qDelete.promise;
     };
-    
-    // Manual function to generate a post id through a date setting
-    // can be also done by ref.push() and then retrieve the key
+
+
     function generatePostId() {
         var d = new Date();
         
