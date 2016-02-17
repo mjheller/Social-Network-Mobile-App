@@ -130,7 +130,7 @@ angular.module('starter.controllers-feed', ['ionic'])
 
 
         $scope.newPost = function() {
-            $state.go('submit');
+            $state.go('submit', {topic: $scope.topic});
         };
 
         $scope.goToProfile = function() {

@@ -145,9 +145,9 @@ angular.module('starter', [
 
   // new post
   .state('submit', {
-    url: '/submit',
-    controller: 'SubmitCtrl',
+    url: '/submit/:topic',
     templateUrl: 'templates/timeline/submit.html',
+    controller: 'SubmitCtrl',
     resolve: {authResolve: authResolve}
   })
 
