@@ -7,8 +7,6 @@ angular.module('starter.controllers-feed', ['ionic'])
         $scope.topics = Topics.all();
         $scope.posts = Timeline.getFeed();
         //console.log($scope.posts)
-        //$scope.topic = currentTopic.getStateParams().topic;
-        //console.log($scope.topic);
 
         $scope.status = {
             loading: true,
@@ -22,8 +20,7 @@ angular.module('starter.controllers-feed', ['ionic'])
         $scope.$on('$locationChangeSuccess', function(event) {
             $scope.topic = currentTopic.getStateParams().topic;
             console.log($scope.topic);
-            //console.log($location.url());
-            //console.log($stateParams);
+
         });
 
         // used to avoid sticky header

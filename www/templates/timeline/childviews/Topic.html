@@ -1,0 +1,15 @@
+<ion-view cache-view="false">
+    <ion-nav-title> {{ topic }} </ion-nav-title>
+    <ion-content>
+        <div>
+            <p> HELLO </p>
+        </div>
+        <ion-list>
+        <!-- put the current topic into $scope so can access with scope.topic instead of hardcode -->
+            <ion-item>
+        <!--<ion-item ng-repeat="post in posts | filter:{topic: 'nightlife'}:true">-->
+                {{post.meta.text}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

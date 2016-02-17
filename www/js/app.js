@@ -9,7 +9,6 @@ angular.module('starter', [
   // timeline and followers
   'starter.controllers-timeline',
   'starter.controllers-submit',
-
   'starter.controllers-followers',
   'starter.services-followers',
   'starter.services-timeline',
@@ -21,7 +20,6 @@ angular.module('starter', [
   'starter.controllers-account',
   'starter.services-auth',
   'starter.services-profile',
-
 
   // cordova
   'starter.services-cordova-camera',
@@ -97,68 +95,18 @@ angular.module('starter', [
       }
     }
   })
-      .state('tab.feed.feed-data', {
+  //Topic nested view with stateParam url
+      .state('tab.feed.Topic', {
         url:'/Topic/:topic',
-        //views:{
-          //'feed-data': {
-          //  parent: 'feed-data',
-            templateUrl: 'templates/timeline/childviews/feed-data.html',
+        views:{
+          'Topic': {
+            templateUrl: 'templates/timeline/childviews/Topic.html',
             controller: 'FeedCtrl',
             resolve: {authResolve: authResolve}
-        //  }
-        //}
+          }
+        }
       })
 
-      .state('tab.feed.Nightlife', {
-        url:'/Nightlife',
-        views:{
-        'Nightlife': {
-          templateUrl: 'templates/timeline/childviews/Nightlife.html',
-          controller: '',
-          resolve: {authResolve: authResolve}
-          }
-        }
-      })
-      .state('tab.feed.Events', {
-        url:'/Events',
-        views:{
-          'Nightlife': {
-            templateUrl: 'templates/timeline/childviews/Events.html',
-            controller: '',
-            resolve: {authResolve: authResolve}
-          }
-        }
-      })
-      .state('tab.feed.Fitness', {
-        url:'/Fitness',
-        views:{
-          'Nightlife': {
-            templateUrl: 'templates/timeline/childviews/Fitness.html',
-            controller: '',
-            resolve: {authResolve: authResolve}
-          }
-        }
-      })
-      .state('tab.feed.Sports', {
-        url:'/Sports',
-        views:{
-          'Nightlife': {
-            templateUrl: 'templates/timeline/childviews/Sports.html',
-            controller: '',
-            resolve: {authResolve: authResolve}
-          }
-        }
-      })
-      .state('tab.feed.Trending', {
-        url:'/Trending',
-        views:{
-          'Nightlife': {
-            templateUrl: 'templates/timeline/childviews/Trending.html',
-            controller: '',
-            resolve: {authResolve: authResolve}
-          }
-        }
-      })
   // view timeline
   .state('tab.timeline', {
     url: '/timeline/:uid',
@@ -170,7 +118,8 @@ angular.module('starter', [
       }
     }
   })
-    //Messaging tab
+
+  //Messaging tab
     .state('tab.chats',{
       url:'/chats',
       views:{
@@ -181,7 +130,8 @@ angular.module('starter', [
         }
       }
     })
-  // manage followers
+
+    // manage followers
   .state('tab.followers', {
     url: '/followers',
     views: {
