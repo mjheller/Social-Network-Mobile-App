@@ -5,8 +5,10 @@ angular.module('starter.controllers-feed', ['ionic'])
                                          Auth, Timeline, Utils, Profile, Topics, currentTopic) {
 
         $scope.topics = Topics.all();
-        $scope.posts = Timeline.getFeed();
-        //console.log($scope.posts)
+        //$scope.posts = Timeline.getFeed();
+        //$scope.posts = loadFeed();
+        //console.log($scope.posts) //need to unchain and unwrap the promise
+
 
         $scope.status = {
             loading: true,
@@ -33,13 +35,13 @@ angular.module('starter.controllers-feed', ['ionic'])
             if($stateParams.uid != undefined && $stateParams.uid != null && $stateParams.uid != "") {
                 // view the timeline of user
                 $scope.status['uid'] = $stateParams.uid;
-                //reLoad();
+                reLoad();
 
             } else {
                 // otherwise load users profile
                 if($scope.AuthData.hasOwnProperty('uid')){
                     $scope.status['uid'] = $scope.AuthData.uid;
-                    //reLoad();
+                    reLoad();
                 } else {
                     $state.go('tab.account');
                 }
@@ -68,16 +70,44 @@ angular.module('starter.controllers-feed', ['ionic'])
                         // convert to array for sorting in ng-repeat without filters
                         // returns array with array[x] = {value: PostsData, key: postId}
                         $scope.posts = Utils.arrayValuesAndKeys(posts);
-                        $scope.status['feed_empty'] = false;
+                        console.log($scope.posts);
+                    //    $scope.status['feed_empty'] = false;
+                    //} else {
+                    //    $scope.status['feed_empty'] = true;
+                    };
+                    //$scope.status['loading'] = false;
+                    $scope.$broadcast('scroll.refreshComplete');
+
+                    //@dependencies
+                    formatOther(posts);
+                    //loadPostsImages(posts);
+                    // todo: v2.1 loadComments(PostsData);
+                },
+                function(error){
+                    console.log(error)
+                    //$scope.status['loading'] = false;
+                    $scope.$broadcast('scroll.refreshComplete');
+                }
+            )
+        };
+
+        function loadTimeline() {
+            Timeline.getMyPosts($scope.status['uid']).then(
+                function(PostsData){
+                    if(PostsData != null) {
+                        // convert to array for sorting in ng-repeat without filters
+                        // returns array with array[x] = {value: PostsData, key: postId}
+                        $scope.PostsData = Utils.arrayValuesAndKeys(PostsData);
+                        $scope.status['timeline_empty'] = false;
                     } else {
-                        $scope.status['feed_empty'] = true;
+                        $scope.status['timeline_empty'] = true;
                     };
                     $scope.status['loading'] = false;
                     $scope.$broadcast('scroll.refreshComplete');
 
                     //@dependencies
-                    formatOther(posts);
-                    loadPostsImages(posts);
+                    formatOther(PostsData);
+                    loadPostsImages(PostsData);
                     // todo: v2.1 loadComments(PostsData);
                 },
                 function(error){
@@ -87,8 +117,6 @@ angular.module('starter.controllers-feed', ['ionic'])
                 }
             )
         };
-
-
 
         // additional formatting
         $scope.PostsDataOther = {};
