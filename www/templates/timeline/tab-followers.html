@@ -42,7 +42,8 @@
           <ion-item
             ng-repeat="(uid, value) in FollowingList"
             class="item item-avatar item-icon-right"
-            href="#/tab/timeline/{{uid}}">
+            ui-sref="tab.timeline({uid:'{{uid}}'})">
+
 
             <img ng-src="{{FollowingProfiles[uid].profilePicture || tempData.noProfilePicture}}">
             <h2>{{FollowingProfiles[uid].meta.displayName}}</h2>

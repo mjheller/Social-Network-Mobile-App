@@ -32,12 +32,6 @@
       </ion-nav-buttons>
     </ion-nav-bar>
 
-
-    <ion-nav-view name="Nightlife" animation="slide-left-right"></ion-nav-view>
-    <ion-nav-view name="Events" animation="slide-left-right"></ion-nav-view>
-    <ion-nav-view name="Fitness" animation="slide-left-right"></ion-nav-view>
-    <ion-nav-view name="Sports" animation="slide-left-right"></ion-nav-view>
-    <ion-nav-view name="Trending" animation="slide-left-right"></ion-nav-view>
     <ion-nav-view name="Topic" animation="slide-left-right"></ion-nav-view>
 
   </ion-side-menu-content>
@@ -50,8 +44,7 @@
 
     <ion-content scroll="true" class="has-header">
       <ion-list>
-        <!--<ion-item menu-close ng-repeat="topic in topics" ui-sref="tab.feed.{{topic.text}}">-->
-      <ion-item menu-close ng-repeat="topic in topics" ui-sref="tab.feed.Topic({topic:'{{topic.text}}'})">
+        <ion-item menu-close ng-repeat="topic in topics" ui-sref="tab.feed.Topic({topic:'{{topic.text}}'})">
           {{topic.text}}
         </ion-item>
       </ion-list>
@@ -59,5 +52,6 @@
   </ion-side-menu>
 
 </ion-side-menus>
+
 
 </ion-view>

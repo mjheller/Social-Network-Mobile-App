@@ -114,6 +114,7 @@ angular.module('starter.services-timeline', [])
                 Codes.handleError(error);
                 qDelete.reject(error);
             } else {
+
                 Utils.showMessage('Post deleted!', 1000);
                 qDelete.resolve("POST_DELETE_SUCCESS");
             }

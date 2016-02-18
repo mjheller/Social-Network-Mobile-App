@@ -2,7 +2,7 @@ angular.module('starter.controllers-feed', ['ionic'])
 
     .controller('FeedCtrl', function($scope, $state , $stateParams,
                                          $ionicSlideBoxDelegate, $ionicPopup, $ionicActionSheet, $ionicHistory,
-                                         Auth, Timeline, Utils, Profile, Topics, currentTopic) {
+                                         Auth, Timeline, Utils, Profile, Topics, currentTopic, Followers) {
 
         $scope.topics = Topics.all();
         //$scope.posts = Timeline.getFeed();
@@ -157,9 +157,9 @@ angular.module('starter.controllers-feed', ['ionic'])
                 }
             )
         };
-        $scope.moreOptions = function(postId, uid) {
+        $scope.moreOptions = function(postId, uid, postUserName) {
             // Show the action sheet
-            if($scope.AuthData.uid == uid) {
+
                 var hideSheet = $ionicActionSheet.show({
                     buttons: [
                         { text: 'Like'},
@@ -167,8 +167,8 @@ angular.module('starter.controllers-feed', ['ionic'])
                         { text: 'View profile' },
                         { text: 'Follow'},
                     ],
-                    //destructiveText: 'Delete',
-                    titleText: 'Post options',
+
+                    titleText: 'Options',
                     cancelText: 'Cancel',
                     cancel: function() {
                         // add cancel code..
@@ -177,8 +177,23 @@ angular.module('starter.controllers-feed', ['ionic'])
                         switch(index) {
                             case 0:
                                 //
-                                window.alert("Do something else")
-                                break
+                                window.alert("Like");
+                                break;
+                            case 1:
+                                window.alert("Reply");
+                                break;
+                            case 2:
+                                $state.go('tab.timeline',{uid: uid});
+                                break;
+                            case 3:
+                                Followers.addFollower($scope.AuthData.uid,postUserName ).then(
+                                    function(success){
+                                        Utils.showMessage("Adding user...", 1000);
+                                    }, function(error){
+                                        handleError(error)
+                                    }
+                                )
+                                break;
                         }
                         return true;
                     },
@@ -194,7 +209,7 @@ angular.module('starter.controllers-feed', ['ionic'])
        hideSheet();
       }, 2000);
                  */
-            }
+
         };
 
         // additional formatting

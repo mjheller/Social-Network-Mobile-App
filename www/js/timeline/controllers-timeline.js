@@ -143,7 +143,7 @@ angular.module('starter.controllers-timeline', [])
     if($scope.AuthData.uid == uid) {
       var hideSheet = $ionicActionSheet.show({
        buttons: [
-         { text: 'Do something else' },
+         //{ text: 'Delete' },
        ],
        destructiveText: 'Delete',
        titleText: 'Post options',
@@ -154,15 +154,20 @@ angular.module('starter.controllers-timeline', [])
        buttonClicked: function(index) {
          switch(index) {
            case 0:
-             //
-             window.alert("Do something else")
-             break
+
+             Timeline.deletePost($scope.AuthData.uid, postId);
+
+             break;
          }
+         //$state.go('tab.timeline');
+         loadTimeline()
          return true;
+
        },
        destructiveButtonClicked: function() {
-         deletePost(postId);
+         Timeline.deletePost($scope.AuthData.uid, postId);
          hideSheet();
+         loadTimeline()
          return true;
        }
       });
@@ -183,6 +188,7 @@ angular.module('starter.controllers-timeline', [])
     });
     confirmPopup.then(function(res) {
      if(res) {
+       console.log('deleting');
          Timeline.deletePost($scope.AuthData.uid, postId).then(
            function(success){
              loadTimeline();

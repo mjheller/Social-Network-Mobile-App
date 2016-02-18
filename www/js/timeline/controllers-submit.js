@@ -8,7 +8,7 @@ angular.module('starter.controllers-submit', [])
           $scope.$on('$ionicView.enter', function(e) {
             loadProfileData();
             initData();
-
+            console.log($scope.FormData);
           });
 
           // Form
@@ -22,7 +22,7 @@ angular.module('starter.controllers-submit', [])
                     thumbnail: $scope.ProfileData.profilePicture,
                     text: "",
                     topic: $scope.topic,
-                    location: $scope.addLocation(),
+                    location: $scope.ProfileData.location,
                     images: [],
                 },
                 uid: Auth.AuthData.uid,
