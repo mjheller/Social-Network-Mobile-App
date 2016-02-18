@@ -6,6 +6,8 @@ angular.module('starter', [
   'ngCordova',
   'firebase',
 
+
+
   // timeline and followers
   'starter.controllers-timeline',
   'starter.controllers-submit',
@@ -15,11 +17,16 @@ angular.module('starter', [
   'starter.controllers-chat',
   'starter.controllers-feed',
   'starter.services-feed',
+  'starter.controllers-events',
+  'starter.services-events',
+
+
 
   // auth and profile
   'starter.controllers-account',
   'starter.services-auth',
   'starter.services-profile',
+
 
   // cordova
   'starter.services-cordova-camera',
@@ -76,50 +83,70 @@ angular.module('starter', [
   $stateProvider
 
   // setup an abstract state for the tabs directive
-  .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
+    .state('tab', {
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html'
+    })
 
-  // Each tab has its own nav history stack:
+    // Each tab has its own nav history stack:
 
-  // view feed
-  .state('tab.feed', {
-    url: '/feed',
-    views: {
-      'tab-feed': {
-        templateUrl: 'templates/timeline/tab-feed.html',
-        controller: 'FeedCtrl',
-        resolve: {authResolve: authResolve}
-      }
-    }
-  })
-  //Topic nested view with stateParam url
-      .state('tab.feed.Topic', {
-        url:'/Topic/:topic',
-        views:{
-          'Topic': {
-            templateUrl: 'templates/timeline/childviews/Topic.html',
-            controller: 'FeedCtrl',
-            resolve: {authResolve: authResolve}
-          }
+    // view feed
+    .state('tab.feed', {
+      url: '/feed',
+      views: {
+        'tab-feed': {
+          templateUrl: 'templates/timeline/tab-feed.html',
+          controller: 'FeedCtrl',
+          resolve: {authResolve: authResolve}
         }
-      })
-
-  // view timeline
-  .state('tab.timeline', {
-    url: '/timeline/:uid',
-    views: {
-      'tab-timeline': {
-        templateUrl: 'templates/timeline/tab-timeline.html',
-        controller: 'TimelineCtrl',
-        resolve: {authResolve: authResolve}
       }
-    }
-  })
+    })
+    //Topic nested view with stateParam url
+    .state('tab.feed.Topic', {
+      url:'/Topic/:topic',
+      views:{
+        'Topic': {
+          templateUrl: 'templates/timeline/childviews/Topic.html',
+          controller: 'FeedCtrl',
+          resolve: {authResolve: authResolve}
+        }
+      }
+    })
+    .state('tab.feed.main-feed', {
+      url:'/main-feed',
+      views:{
+        'main-feed': {
+          templateUrl: 'templates/timeline/childviews/main-feed.html',
+          controller: 'FeedCtrl',
+          resolve: {authResolve: authResolve}
+        }
+      }
+    })
+    .state('tab.events', {
+      url:'/tab-events',
+      views:{
+        'tab-events': {
+          templateUrl: 'templates/timeline/tab-events.html',
+          controller: 'EventsCtrl',
+          resolve: {authResolve: authResolve}
+        }
+      }
+    })
 
-  //Messaging tab
+    // view timeline
+    .state('tab.timeline', {
+      url: '/timeline/:uid',
+      views: {
+        'tab-timeline': {
+          templateUrl: 'templates/timeline/tab-timeline.html',
+          controller: 'TimelineCtrl',
+          resolve: {authResolve: authResolve}
+        }
+      }
+    })
+
+    //Messaging tab
     .state('tab.chats',{
       url:'/chats',
       views:{
@@ -132,35 +159,35 @@ angular.module('starter', [
     })
 
     // manage followers
-  .state('tab.followers', {
-    url: '/followers',
-    views: {
-      'tab-followers': {
-        templateUrl: 'templates/timeline/tab-followers.html',
-        controller: 'FollowersCtrl',
-        resolve: {authResolve: authResolve}
+    .state('tab.followers', {
+      url: '/followers',
+      views: {
+        'tab-followers': {
+          templateUrl: 'templates/timeline/tab-followers.html',
+          controller: 'FollowersCtrl',
+          resolve: {authResolve: authResolve}
+        }
       }
-    }
-  })
+    })
 
-  // new post
-  .state('submit', {
-    url: '/submit/:topic',
-    templateUrl: 'templates/timeline/submit.html',
-    controller: 'SubmitCtrl',
-    resolve: {authResolve: authResolve}
-  })
+    // new post
+    .state('submit', {
+      url: '/submit/:topic',
+      templateUrl: 'templates/timeline/submit.html',
+      controller: 'SubmitCtrl',
+      resolve: {authResolve: authResolve}
+    })
 
-  // account settings, signup and login
-  .state('tab.account', {
-    url: '/account/:nextState',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/auth/tab-account.html',
-        controller: 'AccountCtrl'
+    // account settings, signup and login
+    .state('tab.account', {
+      url: '/account/:nextState',
+      views: {
+        'tab-account': {
+          templateUrl: 'templates/auth/tab-account.html',
+          controller: 'AccountCtrl'
+        }
       }
-    }
-  })
+    })
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/feed');

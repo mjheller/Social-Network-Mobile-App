@@ -1,0 +1,67 @@
+<ion-view view-title="Following">
+  <ion-content>
+
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <!--
+      addFollower
+      You can hide this section when the user is logged out
+    -->
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-person-add placeholder-icon"></i>
+
+        <form ng-submit="addFollower()" style="width: 100vw">
+          <input
+            style="padding-left: 10px"
+            type="text" placeholder="Enter username to follow" ng-model="searchUser.value" >
+        </form>
+
+      </label>
+    </div>
+
+    <p class="padding center" style="margin: 20px 0px">
+      Currently Following
+    </p>
+
+    <div ng-switch="loadingMode">
+
+      <!-- spinner within content when followers are loaded -->
+      <div ng-switch-when="true" style="width: 100vw; text-align: center; margin: 20px 0px">
+        <ion-spinner></ion-spinner>
+      </div>
+
+      <div ng-switch-when="false">
+
+        <ion-list>
+
+          <!-- followers list -->
+          <ion-item
+            ng-repeat="(uid, value) in FollowingList"
+            class="item item-avatar item-icon-right"
+            href="#/tab/timeline/{{uid}}">
+
+            <img ng-src="{{FollowingProfiles[uid].profilePicture || tempData.noProfilePicture}}">
+            <h2>{{FollowingProfiles[uid].meta.displayName}}</h2>
+            <p>@{{FollowingProfiles[uid].meta.username}}</p>
+
+            <i class="icon ion-ios-arrow-right"></i>
+
+            <ion-option-button
+              class="button-assertive"
+              ng-click="stopFollowing(uid)">
+              Remove
+            </ion-option-button>
+
+          </ion-item>
+
+        </ion-list>
+      </div>
+    </div>
+
+
+  </ion-content>
+</ion-view>

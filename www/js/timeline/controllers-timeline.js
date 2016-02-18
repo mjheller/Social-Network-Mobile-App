@@ -1,5 +1,8 @@
 angular.module('starter.controllers-timeline', [])
 
+/**
+ * We use a redirect state to avoid flickering on the start
+ */
 .controller('TimelineCtrl', function($scope, $state, $stateParams,
   $ionicSlideBoxDelegate, $ionicPopup, $ionicActionSheet, $ionicHistory,
   Auth, Timeline, Utils, Profile) {
@@ -72,12 +75,6 @@ angular.module('starter.controllers-timeline', [])
     };
   };
 
-  function loadFeed(){
-
-  }
-
-
-
   $scope.PostsData= {};
   function loadTimeline() {
     Timeline.getMyPosts($scope.status['uid']).then(
@@ -143,7 +140,7 @@ angular.module('starter.controllers-timeline', [])
     if($scope.AuthData.uid == uid) {
       var hideSheet = $ionicActionSheet.show({
        buttons: [
-         //{ text: 'Delete' },
+         { text: 'Do something else' },
        ],
        destructiveText: 'Delete',
        titleText: 'Post options',
@@ -154,20 +151,15 @@ angular.module('starter.controllers-timeline', [])
        buttonClicked: function(index) {
          switch(index) {
            case 0:
-
-             Timeline.deletePost($scope.AuthData.uid, postId);
-
-             break;
+             //
+             window.alert("Do something else")
+             break
          }
-         //$state.go('tab.timeline');
-         loadTimeline()
          return true;
-
        },
        destructiveButtonClicked: function() {
-         Timeline.deletePost($scope.AuthData.uid, postId);
+         deletePost(postId);
          hideSheet();
-         loadTimeline()
          return true;
        }
       });
@@ -188,7 +180,6 @@ angular.module('starter.controllers-timeline', [])
     });
     confirmPopup.then(function(res) {
      if(res) {
-       console.log('deleting');
          Timeline.deletePost($scope.AuthData.uid, postId).then(
            function(success){
              loadTimeline();

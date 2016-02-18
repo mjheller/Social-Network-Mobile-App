@@ -20,9 +20,7 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard",
-    "cordova-plugin-geolocation",
-    "cordova-plugin-inappbrowser"
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": []
 }

@@ -1,0 +1,30 @@
+<ion-view view-title="Events">
+  <ion-nav-buttons side="left">
+    <button class="button icon-left ion-android-home" ng-click="goToProfile()"></button>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header">
+
+    <ion-list>
+      <ion-item class="item item-avatar item-text-wrap" ng-click="mappify(event.latitude, event.longitude)" ng-repeat="event in events | orderBy: '-value.start_time' ">
+        <img ng-src="{{event.image.url}}">
+        <span>{{event.title}}</span>
+        <span>{{event.start_time}}</span>
+        <span>{{event.venue_name}}</span>
+        <span>{{event.venue_address}}</span>
+        
+        <!--{{event.description}}-->
+
+
+      </ion-item>
+
+    </ion-list>
+    </ion-content>
+
+ </ion-view>
+
+
+
+
+
+

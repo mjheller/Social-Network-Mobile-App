@@ -38,18 +38,19 @@ angular.module('starter.services-chat', [])
     this.all = function () {
       return chats;
     }
-    this.remove = function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    };
+  };
 
-    this.get = function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
+  this.remove = function(chat) {
+    chats.splice(chats.indexOf(chat), 1);
+  };
+
+  this.get = function(chatId) {
+    for (var i = 0; i < chats.length; i++) {
+      if (chats[i].id === parseInt(chatId)) {
+        return chats[i];
       }
-      return null;
-    };
+    }
+    return null;
   };
 
 })

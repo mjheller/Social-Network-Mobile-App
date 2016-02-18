@@ -1,7 +1,12 @@
 angular.module('starter.services-followers', [])
 
 
-
+/**
+ * General Wrapper for Followers (Instagram like) Management
+ * This version: 25/07/2015
+ * 
+ * Upcoming versions: leverage Firebase Multi-Location Updates
+ */
 .factory('Followers', function($q, Profile) {
     var self = this;
     

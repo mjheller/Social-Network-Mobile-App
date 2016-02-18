@@ -1,0 +1,92 @@
+<ion-view view-title="My Posts">
+  <ion-nav-buttons side="left">
+    <button class="button icon-left ion-android-home" ng-click="goToProfile()"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button icon-left ion-ios-plus-empty" ng-click="newPost()"> Post</button>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div ng-switch="status.loadingProfile">
+
+      <div ng-switch-when="true" style="width: 100vw; text-align: center; margin: 20px 0px">
+       Loading...
+      </div>
+
+      <div ng-switch-when="false">
+
+
+        <div class="list">
+
+          <a class="item item-avatar item-light item-text-wrap">
+            <img ng-src="{{ProfileData.profilePicture || 'img/ionic.png'}}">
+            <h2>{{ProfileData.meta.displayName}}
+              <span ng-show="ProfileData.other.city">({{ProfileData.other.city}})</span>
+            </h2>
+            <p class="timeline">
+              <span>{{ProfileData.other.bio}}</span>
+            </p>
+            <p class="timeline">
+
+            </p>
+
+
+          </a>
+
+
+        </div>
+    </div>
+
+    <div ng-switch="status.loading">
+      <!-- spinner within content when followers are loaded -->
+      <div ng-switch-when="true" style="width: 100vw; text-align: center; margin: 20px 0px">
+        <ion-spinner></ion-spinner>
+      </div>
+
+      <!-- content -->
+      <div ng-switch-when="false">
+
+        <p class="center" ng-show="status.timeline_empty" style="margin: 20px 0px">Nothing on this timeline yet!</p>
+
+        <p class="center" ng-show="status.uid == AuthData.uid && !status.timeline_empty" style="margin: 20px 0px">Tap to edit</p>
+
+
+        <ion-list>
+          <ion-item
+            ng-click="moreOptions(postObj.key, postObj.value.uid)"
+            class="item item-avatar item-text-wrap"
+            ng-repeat="postObj in PostsData | orderBy: '-value.timestamp_create' track by $index">
+
+            <!-- image -->
+            <img ng-src="{{ProfileData.profilePicture || 'img/perry.png'}}">
+
+            <!-- header -->
+            <h2 class="timeline">
+              {{ProfileData.meta.displayName}} <span>@{{ProfileData.meta.username}}</span>
+              <br>
+              <span class="small">{{PostsDataOther[postObj.key].since}} ago</span>
+            </h2>
+
+            <!-- body -->
+            <p>
+              {{postObj.value.meta.text}}
+            </p>
+
+            <!-- opt images -->
+            <p ng-show="loadingPosts['image'][postObj.key] == false">
+               <post-images></post-images>
+            </p>
+
+
+          </ion-item>
+        </ion-list>
+
+      </div> <!-- ./ false -->
+    </div> <!-- ./ content -->
+  </ion-content>
+</ion-view>

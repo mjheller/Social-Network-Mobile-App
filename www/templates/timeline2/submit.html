@@ -1,0 +1,52 @@
+<ion-view view-title="New post" align="right">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-ios-close-empty" ng-click="close()"></button>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+
+    <label class="item item-input">
+      <textarea rows="5"
+        placeholder="What's happening?"
+        ng-model="FormData.meta.text">
+      </textarea>
+    </label>
+
+    <!-- images -->
+    <div>
+      <ion-slide-box on-slide-changed="slideHasChanged($index)" class="center">
+        <ion-slide ng-repeat="image in FormImages track by $index">
+
+          <div class="post-images">
+            <p class="text-right">
+              <button class="button icon ion-ios-close" ng-click="removeImage($index)"></button>
+            </p>
+            <img ng-src="{{image}}">
+          </div>
+
+        </ion-slide>
+      </ion-slide-box>
+    </div>
+
+  </ion-content>
+
+  <!-- Footer is attached such that keyboard is below the footer
+    Requires ionic-keyboard-attach cordova plugin
+    Read more about some iOS and Android twerks here:
+    http://ionicframework.com/docs/api/directive/keyboardAttach/
+  -->
+  <ion-footer-bar align-title="right" keyboard-attach class="bar-light">
+
+    <div class="buttons">
+      <button class="button button-icon-left button-clear ion-image" ng-click="addImage()"></button>
+    </div>
+
+    <h1 class="title"></h1>
+
+    <div class="buttons" ng-click="doSomething()">
+      <button class="button">{{returnCount()}}</button>
+      <button class="button button-assertive" ng-click="submitPost()">Post</button>
+    </div>
+
+  </ion-footer-bar>
+
+</ion-view>

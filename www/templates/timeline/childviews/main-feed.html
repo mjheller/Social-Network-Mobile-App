@@ -1,0 +1,32 @@
+<ion-view cache-view="false">
+    <ion-nav-title> Feed </ion-nav-title>
+    <ion-content>
+        <header style="align-content: center">{{location}}</header>
+
+        <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <ion-list>
+            <ion-item ng-click="moreOptions(post.key, post.value.uid, post.value.meta.username)"  class="item item-avatar item-text-wrap" ng-repeat="post in posts | filter: { value: { location: $scope.location }}| orderBy: '-value.timestamp_create' track by $index"">
+
+            <img ng-src="{{post.value.meta.thumbnail}}">
+
+            <!-- header -->
+            <h2 class="timeline">
+                <span>@{{post.value.meta.username}}</span>
+                <span class="small">{{post.value.timestamp_create | date:'MMM-dd-yyyy  h:mm a'}} </span>
+            </h2>
+
+            <!-- body -->
+            <span>{{post.value.meta.text}}</span>
+
+            <!-- opt images -->
+            <p ng-show="loadingPosts['image'][postObj.key] == false">
+                <post-images></post-images>
+            </p>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
