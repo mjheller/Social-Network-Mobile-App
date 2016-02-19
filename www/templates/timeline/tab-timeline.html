@@ -23,7 +23,7 @@
 
           <a class="item item-avatar item-light item-text-wrap">
             <div style="">
-            <img ng-src="{{ProfileData.profilePicture || 'img/ionic.png'}}">
+            <img ng-src="{{ProfileData.profilePicture || 'img/unknown.jpg'}}">
               </div>
             <h2>{{ProfileData.meta.displayName}}
               <span ng-show="ProfileData.other.city">({{ProfileData.other.city}})</span>
@@ -63,11 +63,11 @@
             ng-repeat="postObj in PostsData | orderBy: '-value.timestamp_create' track by $index">
 
             <!-- image -->
-            <img ng-src="{{ProfileData.profilePicture || 'img/perry.png'}}">
+            <img ng-src="{{ProfileData.profilePicture || 'img/unknown.jpg'}}">
 
             <!-- header -->
             <h2 class="timeline">
-              {{ProfileData.meta.displayName}} <span>@{{ProfileData.meta.username}}</span>
+              <span>@{{ProfileData.meta.username}}</span>
               <br>
               <span class="small">{{PostsDataOther[postObj.key].since}} ago</span>
             </h2>

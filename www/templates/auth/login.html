@@ -1,52 +1,60 @@
 <ion-modal-view>
 
-  <ion-content class="login center padding" style="background-image: url('../../img/blue.jpg')">
+  <ion-content class="login center padding" style="background-image: url('../../img/threeD.jpg')">
     <!--<ion-content class="login center padding" style="background-color: #000025">-->
     <br>
-      <img src="../../img/gps.png">
+      <img src="../../img/marker.png" style="box-shadow: 8px 8px 8px 4px #444444">
       <br>
       <br>
-    <h1 style="color: lightgray"> Social App</h1>
-    <span style="font-size: 80%; color:lightgray">Discover events, chat, and meet people near you</span>
+    <hr>
+
+    <h1 style="font-family: Futura; color: darkorange; font-size: 2em; text-shadow: 3px 3px #444444;: "> Social Network App</h1>
+    <span style="font-family: Futura;font-size: 80%; color:darkorange;text-shadow: 2px 2px #444444">Discover local events, chat, meet</span>
     <br>
+    <br>
+    <hr>
       <br>
+    <br>
 
     <div class="list">
 
 
-      <form ng-submit="doLogin()" style="">
+      <form ng-submit="doLogin()" style="box-shadow: 4px 4px 4px 4px #444444">
         <label class="item item-input" >
-          <input type="email" ng-model="loginData.userEmail" placeholder="E-mail" ">
+          <input type="email" ng-model="loginData.userEmail" placeholder="E-mail" style="font-family: Futura">
         </label>
         <label class="item item-input" >
-          <input type="password"  ng-model="loginData.userPassword" placeholder="Password" >
+          <input type="password"  ng-model="loginData.userPassword" placeholder="Password" style="font-family: Futura">
         </label>
       </form>
 
-
+<br>
 
 
 
       <div class="row">
-        <button class="button button-block button-clear" ng-click="doLogin()">Sign in</button>
+        <button style="font-family: Futura;color:darkorange;text-shadow: 2px 2px #444444;" class="button button-block button-clear" ng-click="doLogin()">Sign in</button>
         <div class="col">
-            <a class="button button-block button-clear button icon icon-center ion-social-facebook center" ng-click="doLoginSocial('facebook')"></a>
+            <a class="button button-block button-assertive button icon icon-center ion-social-facebook center" ng-click="doLoginSocial('facebook')"></a>
         </div>
+
         <div class="col">
-            <a class="button button-block button-clear button icon icon-center ion-social-twitter center" ng-click="doLoginSocial('twitter')"></a>
+            <a class="button button-block button-assertive button icon icon-center ion-social-twitter center" ng-click="doLoginSocial('twitter')"></a>
         </div>
-        <div class="col">
-            <a class="button button-block button-clear button icon icon-center ion-social-google center" ng-click="doLoginSocial('google')"></a>
+        <div class="col" >
+            <a class="button button-block button-assertive button icon icon-center ion-social-google center" ng-click="doLoginSocial('google')"></a>
         </div>
       </div>
 
 
       <div class="row">
         <div class="col">
-           <button class="button button-block button-clear" ng-click="signUp()">Sign up</button>
+
+           <button class="button button-block button-clear" ng-click="signUp()"> <a style="font-family: Futura;color: darkorange; text-shadow: 2px 2px #444444;" ng-click="signUp()">Sign up</a></button>
         </div>
         <div class="col">
-          <button class="button button-block button-clear" ng-click="changePassword('lost')">Forgot password?</button>
+
+          <button class="button button-block button-clear" ng-click="changePassword('lost')"> <a style="font-family: Futura;color: darkorange; text-shadow: 2px 2px #444444;" ng-click="changePassword('lost')">Forgot password?</a></button>
         </div>
       </div>
 

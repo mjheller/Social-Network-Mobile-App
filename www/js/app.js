@@ -19,6 +19,7 @@ angular.module('starter', [
   'starter.services-feed',
   'starter.controllers-events',
   'starter.services-events',
+  'starter.controllers-map',
 
 
 
@@ -130,6 +131,15 @@ angular.module('starter', [
           templateUrl: 'templates/timeline/tab-events.html',
           controller: 'EventsCtrl',
           resolve: {authResolve: authResolve}
+        }
+      }
+    })
+    .state('tab.map', {
+      url: '/map/:lat?long',
+      views: {
+        'Map': {
+          templateUrl: 'templates/timeline/map.html',
+          controller: 'MapCtrl',
         }
       }
     })
