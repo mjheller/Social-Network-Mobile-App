@@ -164,6 +164,7 @@ angular.module('starter.controllers-feed', ['ionic'])
         buttons: [
           { text: 'Like'},
           { text: 'Reply' },
+          { text: 'Message'},
           { text: 'View profile' },
           { text: 'Follow'},
         ],
@@ -180,12 +181,15 @@ angular.module('starter.controllers-feed', ['ionic'])
               window.alert("Like");
               break;
             case 1:
-              window.alert("Reply");
+                $state.go('submit', {topic: $scope.topic})
               break;
             case 2:
-              $state.go('tab.timeline',{uid: uid});
-              break;
+                $state.go('sendMessage', {recipientID: uid, recipientUser: postUserName });
+                  break;
             case 3:
+              $state.go('tab.timeline', {uid: uid});
+              break;
+            case 4:
               Followers.addFollower($scope.AuthData.uid,postUserName ).then(
                 function(success){
                   Utils.showMessage("Adding user...", 1000);

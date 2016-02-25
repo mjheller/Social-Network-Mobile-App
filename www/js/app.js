@@ -15,11 +15,15 @@ angular.module('starter', [
   'starter.services-followers',
   'starter.services-timeline',
   'starter.controllers-chat',
+  'starter.services-chat',
   'starter.controllers-feed',
   'starter.services-feed',
   'starter.controllers-events',
   'starter.services-events',
   'starter.controllers-map',
+  'starter.controllers-messages',
+  'starter.services-messages',
+  'starter.controllers-chat_detail',
 
 
 
@@ -55,6 +59,9 @@ angular.module('starter', [
     }
   });
 
+  $rootScope.$ionicGoBack = function() {
+    $ionicHistory.goBack();
+  };
   // Redirect the user to the login state if unAuthenticated
   $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
     console.log("$stateChangeError", error);
@@ -162,11 +169,28 @@ angular.module('starter', [
       views:{
         'tab-chats':{
           templateUrl: 'templates/timeline/tab-chats.html',
-          controller: '',
+          controller: 'ChatCtrl',
           resolve: {authResolve: authResolve}
         }
       }
     })
+      .state('tab.chats.messages',{
+        url:'/messages/:recipientID',
+        views:{
+          'messages':{
+            templateUrl: 'templates/timeline/childviews/chat-detail.html',
+            controller: 'ChatDetailCtrl',
+            resolve: {authResolve: authResolve}
+          }
+        }
+      })
+
+      .state('sendMessage', {
+        url: '/sendMessage/:recipientID?recipientUser',
+        templateUrl: 'templates/timeline/sendMessage.html',
+        controller: 'MessageCtrl',
+        resolve: {authResolve: authResolve}
+      })
 
     // manage followers
     .state('tab.followers', {

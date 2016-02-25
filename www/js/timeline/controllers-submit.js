@@ -8,7 +8,7 @@ angular.module('starter.controllers-submit', [])
     $scope.$on('$ionicView.enter', function(e) {
       loadProfileData();
       initData();
-      console.log($scope.FormData);
+      //console.log($scope.FormData);
     });
 
     // Form

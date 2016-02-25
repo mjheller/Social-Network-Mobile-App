@@ -571,29 +571,41 @@ angular.module('starter.controllers-account', [])
     // Show the action sheet
 
     $ionicActionSheet.show({
-        buttons: [
-            { text: 'Use facebook picture'},
-            { text: 'Take a new picture' },
-            { text: 'Import from phone library' },
-        ],
-        titleText: 'Change your profile picture',
-        cancelText: 'Cancel',
-        cancel: function() {
-            // add cancel code..
-        },
+      buttons: [
+        {text: 'Use facebook picture'},
+        {text: 'Take a new picture'},
+        {text: 'Import from phone library'},
+      ],
+      titleText: 'Change your profile picture',
+      cancelText: 'Cancel',
+      cancel: function () {
+        // add cancel code..
+      },
 
-        buttonClicked: function(index, sourceTypeIndex) {
-          if (index === 1 || 2){
+
+      buttonClicked: function (index, sourceTypeIndex) {
+        switch (index) {
+          case 0:
+
+            Profile.setFbProfilePicture($scope.AuthData.uid, $scope.AuthData.facebook.profileImageURL);
+            break;
+          case 1:
+            console.log(index);
+            proceed(sourceTypeIndex);
+            break;
+          case 2:
             console.log(index);
             proceed(sourceTypeIndex)
-            return true;
-          };
-          if (index === 0) {
-            Profile.setFbProfilePicture($scope.AuthData.uid, $scope.AuthData.facebook.profileImageURL);
-            return true;
-          }
+            break;
+          case 3:
+            window.alert("Reply");
+            break;
         }
+        return true;
+      }
     });
+
+
     function proceed(sourceTypeIndex) {
       Profile.changeProfilePicture(sourceTypeIndex, $scope.AuthData.uid).then(
         function(success){
