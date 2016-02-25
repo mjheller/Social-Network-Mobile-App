@@ -178,7 +178,8 @@ angular.module('starter.services-auth', [])
             qSignIn.reject(error);
             console.log("Login Failed!", error);
         } else {
-            self.AuthData = AuthData; //gv
+            remember: "sessionOnly",
+                self.AuthData = AuthData; //gv
              qSignIn.resolve(AuthData);
             console.log("Authenticated successfully with payload:", AuthData);
         }

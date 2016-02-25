@@ -11,7 +11,7 @@
         <ion-list ng-repeat="message in messages" ng-if="message.text">
             <ion-item class="item-avatar item-icon-right">
 
-                <img ng-src="{{message.senderThumbnail || 'img/unknown.jpg'}}">
+                <img ng-src="{{message.senderThumbnail || 'img/unknown.jpg'}}" ui-sref="tab.timeline({uid:'{{message.UserData.uid}}'})">
 
                 <h2>
                     <span>@{{message.username}}</span>

@@ -4,7 +4,7 @@ angular.module('starter.controllers-feed', ['ionic'])
                                    $ionicSlideBoxDelegate, $ionicPopup, $ionicActionSheet, $ionicHistory,
                                    Auth, Timeline, Utils, Profile, Topics, currentTopic, Followers) {
 
-    $scope.topics = Topics.all();
+
     //$scope.posts = Timeline.getFeed();
     //$scope.posts = loadFeed();
     //console.log($scope.posts) //need to unchain and unwrap the promise
@@ -32,7 +32,9 @@ angular.module('starter.controllers-feed', ['ionic'])
     });
 
     $scope.$on('$ionicView.enter', function(){
-      loadProfileData()
+      $scope.doRefresh();
+
+      $scope.topics = Topics.all();
 
       if($stateParams.uid != undefined && $stateParams.uid != null && $stateParams.uid != "") {
         // view the timeline of user
@@ -92,7 +94,9 @@ angular.module('starter.controllers-feed', ['ionic'])
 
     $scope.doRefresh = function() {
       // do not toggle loadingmode when just refresh
+        loadProfileData();
       loadFeed();
+        $scope.topics = Topics.all();
     };
 
     function reLoad() {
@@ -125,7 +129,7 @@ angular.module('starter.controllers-feed', ['ionic'])
         },
         function(error){
           console.log(error)
-          //$scope.status['loading'] = false;
+          $scope.status['loading'] = false;
           $scope.$broadcast('scroll.refreshComplete');
         }
       )

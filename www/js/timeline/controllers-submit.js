@@ -119,9 +119,8 @@ angular.module('starter.controllers-submit', [])
       if($scope.returnCount()>=0){
         Timeline.addPost($scope.AuthData.uid, $scope.FormData).then(
           function(success){
-            //$state.go('tab.feed.Topic', {topic: $scope.topic});
-            $state.go('tab.feed');
-            initData();
+              $scope.close()
+
           })
       } else {
         Codes.handleError({code: "POST_NEW_CHAR_EXCEEDED"})
@@ -152,7 +151,9 @@ angular.module('starter.controllers-submit', [])
     // ---------------
 
     $scope.close = function() {
-      $state.go('tab.feed');
+      $state.go('tab.timeline', {});
+      //  $state.go('tab.feed');
+        //$state.go('tab.feed.Topic', {topic: $scope.topic});
     };
 
     $scope.returnCount = function() {

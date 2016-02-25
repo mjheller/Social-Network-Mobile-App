@@ -140,7 +140,7 @@ angular.module('starter.controllers-timeline', [])
     if($scope.AuthData.uid == uid) {
       var hideSheet = $ionicActionSheet.show({
        buttons: [
-         { text: 'Do something else' },
+
        ],
        destructiveText: 'Delete',
        titleText: 'Post options',
@@ -148,15 +148,15 @@ angular.module('starter.controllers-timeline', [])
        cancel: function() {
             // add cancel code..
           },
-       buttonClicked: function(index) {
-         switch(index) {
-           case 0:
-             //
-             window.alert("Do something else")
-             break
-         }
-         return true;
-       },
+       //buttonClicked: function(index) {
+       //  switch(index) {
+       //    case 0:
+       //      //
+       //      window.alert("Do something else")
+       //      break
+       //  }
+       //  return true;
+       //},
        destructiveButtonClicked: function() {
          deletePost(postId);
          hideSheet();
