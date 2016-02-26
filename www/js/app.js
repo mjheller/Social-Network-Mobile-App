@@ -175,7 +175,7 @@ angular.module('starter', [
       }
     })
       .state('tab.chats.messages',{
-        url:'/messages/:recipientID',
+        url:'/messages/:recipientID?recipientUsername',
         views:{
           'messages':{
             templateUrl: 'templates/timeline/childviews/chat-detail.html',
@@ -186,7 +186,7 @@ angular.module('starter', [
       })
 
       .state('sendMessage', {
-        url: '/sendMessage/:recipientID?recipientUser',
+        url: '/sendMessage/:recipientID?recipientUser?firstMessage',
         templateUrl: 'templates/timeline/sendMessage.html',
         controller: 'MessageCtrl',
         resolve: {authResolve: authResolve}

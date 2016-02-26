@@ -23,15 +23,12 @@ angular.module('starter.services-messages', [])
             var qGet = $q.defer();
             var ref = new Firebase(FBURL+'/messages_meta/'+uid + '/' + friendID);
             ref.on("value", function(messages) {
-                //myConversations.forEach(function(snapshot){
-                //    var myMessages = snapshot.val();
-                //    messages.push(myMessages);
-                //    //qGet.resolve(myMessages.val());
-                //});
                 qGet.resolve(messages.val());
             });
             return qGet.promise;
         };
+
+
 
         self.sendMessage = function(uid, friendID, UserData, FormData) {      // new
             var qAdd = $q.defer();
@@ -42,8 +39,18 @@ angular.module('starter.services-messages', [])
 
             var paths = {};
             //paths['/messages/' + postId] = FormData;
+            var recipientUserData = {
+                lastMessage: UserData.lastMessage,
+                senderUsername: UserData.friendUsername,
+                friendUsername: UserData.senderUsername,
+                senderThumbnail: UserData.senderThumbnail,
+                uid: UserData.recipientID,
+                recipientID: UserData.uid
+            };
+
+
             paths['/messages_meta/' + uid + '/' + friendID + '/UserData'] = UserData;
-            paths['/messages_meta/' + friendID + '/' + uid + '/UserData'] = UserData;
+            paths['/messages_meta/' + friendID + '/' + uid + '/UserData'] = recipientUserData;
             paths['/messages_meta/' + uid + '/' + friendID + '/' + messageId] = FormData;
             paths['/messages_meta/' + friendID + '/' + uid + '/' + messageId] = FormData;
 

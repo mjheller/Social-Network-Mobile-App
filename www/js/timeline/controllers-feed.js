@@ -5,11 +5,6 @@ angular.module('starter.controllers-feed', ['ionic'])
                                    Auth, Timeline, Utils, Profile, Topics, currentTopic, Followers) {
 
 
-    //$scope.posts = Timeline.getFeed();
-    //$scope.posts = loadFeed();
-    //console.log($scope.posts) //need to unchain and unwrap the promise
-
-
     $scope.status = {
       loading: true,
       loadingProfile: false,
@@ -188,7 +183,7 @@ angular.module('starter.controllers-feed', ['ionic'])
                 $state.go('submit', {topic: $scope.topic})
               break;
             case 2:
-                $state.go('sendMessage', {recipientID: uid, recipientUser: postUserName });
+                $state.go('sendMessage', {recipientID: uid, recipientUser: postUserName, firstMessage: true });
                   break;
             case 3:
               $state.go('tab.timeline', {uid: uid});

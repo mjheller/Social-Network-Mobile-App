@@ -1,17 +1,18 @@
 <!--<ion-view view-title="{{chat.name}}">-->
 <ion-view view-title="Messages">
     <ion-nav-buttons side="right">
-        <button class="button icon-left ion-ios-plus-empty" ng-click="reply()"> Reply</button>
+        <button class="button icon-left ion-ios-plus-empty" ng-click="sendReply(friendID,friendUsername)"> Reply</button>
     </ion-nav-buttons>
     <ion-content class="padding">
         <ion-refresher
                 pulling-text="Pull to refresh..."
                 on-refresh="doRefresh()">
         </ion-refresher>
-        <ion-list ng-repeat="message in messages" ng-if="message.text">
+        <!--| orderBy: '-value.timestamp_create'-->
+        <ion-list ng-repeat="message in messages  | orderObjectBy:'timestamp_create':true" ng-if="message.text" >
             <ion-item class="item-avatar item-icon-right">
 
-                <img ng-src="{{message.senderThumbnail || 'img/unknown.jpg'}}" ui-sref="tab.timeline({uid:'{{message.UserData.uid}}'})">
+                <img ng-src="{{message.senderThumbnail || 'img/unknown.jpg'}}" ui-sref="tab.timeline({uid:'{{message.uid}}'})">
 
                 <h2>
                     <span>@{{message.username}}</span>

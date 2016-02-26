@@ -1,12 +1,13 @@
 <ion-view view-title="Chats">
+  
   <ion-content>
     <ion-nav-view name="chats">
     <ion-list>
       <!--ng-repeat="(indexX,object) in conversations"-->
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in conversations" type="item-text-wrap" ui-sref="tab.chats.messages({recipientID:'{{chat.UserData.uid}}'})">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in conversations" type="item-text-wrap" ui-sref="tab.chats.messages({recipientID:'{{chat.UserData.recipientID}}',recipientUsername:'{{chat.UserData.friendUsername}}'})">
 
         <img ng-src="{{chat.UserData.senderThumbnail === '' && 'img/unknown.jpg' || chat.UserData.senderThumbnail}}">
-        <h2>{{chat.UserData.username}}</h2>
+        <h2>{{chat.UserData.friendUsername}}</h2>
         <p>{{chat.UserData.lastMessage}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
