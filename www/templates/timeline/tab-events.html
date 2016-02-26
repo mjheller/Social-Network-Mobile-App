@@ -11,12 +11,13 @@
 
       <!--<div id="map" data-tap-disabled="true"></div>-->
     <!--</ion-nav-view>-->
-
-    <ion-nav-view>
+    <ion-nav-view name="tab.events.map"></ion-nav-view>
+    <ion-nav-view name="tab.events">
       <ion-list>
+        <div>
         <ion-item style="height: 200px;" class="item item-avatar item-text-wrap"
-                  ng-repeat="event in events | orderBy: event.start_time" ui-sref="tab.map({lat: '{{event.latitude}}', long: '{{event.longitude}}'})" ui-sref-opts="{reload: true}">
-          <ion-scroll scrollbar-x="false" scrollbar-y="false" >
+                  ng-repeat="event in events | orderObjectBy: 'start_time'" ui-sref="tab.events.map({lat: '{{event.latitude}}', long: '{{event.longitude}}'})">
+          <!--<ion-scroll scrollbar-x="false" scrollbar-y="false" >-->
 
             <img ng-src="{{event.image.url}}">
 
@@ -24,24 +25,26 @@
           <h2 class="timeline">
             <span>@{{event.venue_name}}</span>
           </h2>
-
+          <p><span class="small">{{event.start_time | date:'MMM-dd-yyyy  h:mm a'}} </span></p>
           <!-- body -->
           <span>{{event.title}}</span>
           <span class="small" id="description"> {{event.description}}</span>
 
             <br>
           <footer>
-            <p><span class="small">{{event.start_time | date:'MMM-dd-yyyy  h:mm a'}} </span></p>
+
             <span class="small"> {{event.venue_address}}</span>
 
           </footer>
 
-          </ion-scroll>
+          <!--</ion-scroll>-->
         </ion-item>
-
+        </div>
       </ion-list>
     </ion-content>
   </ion-nav-view>
+
+
 
 
 </ion-view>

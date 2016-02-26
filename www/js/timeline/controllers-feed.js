@@ -130,6 +130,7 @@ angular.module('starter.controllers-feed', ['ionic'])
       )
     };
 
+
     function loadTimeline() {
       Timeline.getMyPosts($scope.status['uid']).then(
         function(PostsData){
@@ -156,7 +157,7 @@ angular.module('starter.controllers-feed', ['ionic'])
         }
       )
     };
-    $scope.moreOptions = function(postId, uid, postUserName) {
+    $scope.moreOptions = function(postId, uid, postUserName, likes) {
       // Show the action sheet
 
       var hideSheet = $ionicActionSheet.show({
@@ -177,7 +178,7 @@ angular.module('starter.controllers-feed', ['ionic'])
           switch(index) {
             case 0:
               //
-              window.alert("Like");
+              $scope.addLike(uid,postId, likes);
               break;
             case 1:
                 $state.go('submit', {topic: $scope.topic})
@@ -215,6 +216,9 @@ angular.module('starter.controllers-feed', ['ionic'])
 
     };
 
+      $scope.addLike = function(uid, postId, likes){
+          Timeline.addLike(uid, postId, likes);
+      };
     // additional formatting
     $scope.PostsDataOther = {};
     function formatOther(PostsData) {

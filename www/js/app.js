@@ -132,7 +132,7 @@ angular.module('starter', [
       }
     })
     .state('tab.events', {
-      url:'/tab-events',
+      url:'/events',
       views:{
         'tab-events': {
           templateUrl: 'templates/timeline/tab-events.html',
@@ -141,7 +141,7 @@ angular.module('starter', [
         }
       }
     })
-    .state('tab.map', {
+    .state('tab.events.map', {
       url: '/map/:lat?long',
       views: {
         'Map': {

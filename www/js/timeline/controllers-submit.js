@@ -25,6 +25,7 @@ angular.module('starter.controllers-submit', [])
           username: $scope.ProfileData.meta.username,
           thumbnail: $scope.ProfileData.profilePicture,
           text: "",
+          likes: 0,
           topic: $scope.topic,
           location: $scope.ProfileData.location,
           images: [],
@@ -153,7 +154,7 @@ angular.module('starter.controllers-submit', [])
     $scope.close = function() {
       $state.go('tab.timeline', {});
       //  $state.go('tab.feed');
-        //$state.go('tab.feed.Topic', {topic: $scope.topic});
+      //  $state.go('tab.feed.Topic', {topic: $scope.topic});
     };
 
     $scope.returnCount = function() {

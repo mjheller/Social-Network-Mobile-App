@@ -52,29 +52,6 @@ angular.module('starter.services-timeline', [])
     };
 
 
-    //self.addPost = function(uid, FormData , FormImages) {        old
-    //    var qAdd = $q.defer();
-    //    var ref = new Firebase(FBURL);
-    //    var postId = generatePostId();
-    //
-    //    Utils.showMessage('Adding post...');
-    //
-    //    var paths = {};
-    //    paths['/posts_meta/' + uid + '/' + postId]      = FormData;
-    //    paths['/posts_images/' + uid + '/' + postId]    = FormImages;
-    //
-    //    var onComplete = function(error) {
-    //        if (error) {
-    //            Codes.handleError(error);
-    //            qAdd.reject(error);
-    //        } else {
-    //            Utils.showMessage('Post added!', 1500);
-    //            qAdd.resolve("POST_ADD_SUCCESS");
-    //        }
-    //    }
-    //    ref.update(paths, onComplete);
-    //    return qAdd.promise;
-    //};
 
     self.addPost = function(uid,FormData) {      // new
       var qAdd = $q.defer();
@@ -82,7 +59,7 @@ angular.module('starter.services-timeline', [])
       var postId = generatePostId();
 
       Utils.showMessage('Adding post...');
-
+      FormData.meta.postID = postId;
       var paths = {};
       paths['/posts/' + postId] = FormData;
       paths['/posts_meta/' + uid + '/' + postId] = FormData;
@@ -121,6 +98,31 @@ angular.module('starter.services-timeline', [])
       }
       ref.update(paths, onComplete);
       return qDelete.promise;
+    };
+
+    self.addLike = function(uid,postId, likes){
+      console.log('likes ', likes);
+      var qLike = $q.defer();
+      var ref = new Firebase(FBURL);
+
+      var paths = {};
+      paths['/posts_meta/' + uid + '/' + postId + '/meta/likes'] = likes+ 1;
+      paths['/posts/' + postId + '/meta/likes'] = likes + 1;
+
+
+      var onComplete = function(error) {
+        if (error) {
+          Codes.handleError(error);
+          qLike.reject(error);
+        } else {
+
+          Utils.showMessage('Post Liked!', 1000);
+          qLike.resolve("liked");
+        }
+      }
+
+      ref.update(paths, onComplete);
+      return qLike.promise;
     };
 
 
