@@ -4019,7 +4019,7 @@ a.subdued {
       background: transparent; }
   .bar.bar-light {
     border-color: transparent;
-    background-color: rgba(51, 48, 46, 0.88);
+    background-color: #F6D127;
     background-image: linear-gradient(0deg, transparent, transparent 50%, transparent 50%);
     color: #fff; }
     .bar.bar-light .title {
@@ -4199,7 +4199,7 @@ a.subdued {
 
 .bar-light .button {
   border-color: transparent;
-  background-color: rgba(51, 48, 46, 0.88);
+  background-color: #F6D127;
   color: #fff; }
   .bar-light .button:hover {
     color: #fff;

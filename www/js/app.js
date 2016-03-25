@@ -5,6 +5,8 @@ angular.module('starter', [
   'ionic',
   'ngCordova',
   'firebase',
+  'ionic.contrib.ui.tinderCards',
+
 
 
 
@@ -20,7 +22,7 @@ angular.module('starter', [
   'starter.services-feed',
   'starter.controllers-events',
   'starter.services-events',
-  'starter.controllers-map',
+  'starter.controllers-meet',
   'starter.controllers-messages',
   'starter.services-messages',
   'starter.controllers-chat_detail',
@@ -84,6 +86,7 @@ angular.module('starter', [
     return Auth.getAuthState();
   };
 
+
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -141,12 +144,13 @@ angular.module('starter', [
         }
       }
     })
-    .state('tab.events.map', {
-      url: '/map/:lat?long',
+    .state('tab.meet', {
+      url: '/meet',
       views: {
-        'Map': {
-          templateUrl: 'templates/timeline/map.html',
-          controller: 'MapCtrl',
+        'tab-meet': {
+          templateUrl: 'templates/timeline/tab-meet.html',
+          controller: 'MeetCtrl',
+          resolve: {authResolve: authResolve}
         }
       }
     })

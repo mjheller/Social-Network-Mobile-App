@@ -5,7 +5,7 @@
 
   <ion-side-menu-content>
 
-    <ion-nav-bar>
+    <ion-nav-bar >
       <ion-nav-buttons side="left">
         <!-- Toggle left side menu -->
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
@@ -30,7 +30,7 @@
 
           <ion-list>
 
-            <ion-item ng-click="moreOptions(post.key, post.value.uid, post.value.meta.username, post.value.meta.likes)"  class="item item-avatar item-text-wrap" ng-repeat="post in posts | filter: { value: { location: $scope.location }}| orderBy: '-value.timestamp_create' track by $index"">
+            <ion-item ng-click="moreOptions(post.key, post.value.uid, post.value.meta.username,post.value.meta.likes)" class="item item-avatar item-text-wrap" ng-repeat="post in posts | filter: { value: { location: $scope.location }}| orderBy: '-value.timestamp_create' track by $index"">
 
             <img ng-src="{{post.value.meta.thumbnail === '' && 'img/unknown.jpg' || post.value.meta.thumbnail}}">
 
@@ -44,14 +44,15 @@
         <!-- body -->
               <span>{{post.value.meta.text}}</span>
 
-            <br><br><hr>
+            <br><br><hr style="border: .5px solid lightgray;">
             <!--<hr>-->
+            <a class="button-icon icon ion-reply" style="color: lightgray;"><span class="small">  {{post.value.meta.dislikes}}</span></a>
             <a class="button-icon icon ion-thumbsup" style="color: lightgray;"><span class="small">  {{post.value.meta.likes}}</span></a>
             <!--<a class="button-icon icon ion-thumbsdown" style="color: lightgray;"><span class="small">  {{post.value.meta.dislikes}}</span></a>-->
             <a class="button-icon icon ion-person-add" style="color: lightgray;"><span class="small">  {{post.value.meta.dislikes}}</span></a>
-            <a class="button-icon icon ion-heart" style="color: lightgray;"><span class="small">  {{post.value.meta.dislikes}}</span></a>
             <a class="button-icon icon ion-email" style="color: lightgray;"><span class="small">  {{post.value.meta.dislikes}}</span></a>
-            <a class="button-icon icon ion-reply" style="color: lightgray;"><span class="small">  {{post.value.meta.dislikes}}</span></a>
+            <a class="button-icon icon ion-heart" style="color: lightgray;"><span class="small">  {{post.value.meta.dislikes}}</span></a>
+
         <!-- opt images -->
               <p ng-show="loadingPosts['image'][postObj.key] == false">
                 <post-images></post-images>

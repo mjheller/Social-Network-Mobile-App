@@ -1,0 +1,26 @@
+<ion-view view-title="Meet">
+    <!--<ion-nav-title>-->
+        <!--<div class="padding">-->
+            <!--<img height="30px" src="img/logo.png">-->
+        <!--</div>-->
+    <!--</ion-nav-title>-->
+    <ion-pane ng-controller="MeetCtrl"  >
+        <td-cards>
+            <td-card id="td-card" ng-repeat="card in cards" on-destroy="cardDestroyed($index)"
+                     on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)"
+                     on-partial-swipe="cardPartialSwipe(amt)">
+
+                <div class="image">
+                    <div class="yes-text overlayBox"><div class="yesBox boxed" id="centerMe">Yes</div></div>
+                    <div class="no-text overlayBox"><div class="noBox boxed">No</div></div>
+                    <img ng-src="{{card.user.picture.large}}">
+
+                </div>
+                <div class="buttondesc">
+                    <div class="username"><i class="icon ion-android-contact"></i> {{card.user.name.first}}</div>
+                    <button ng-click="noCard()" class="button button-assertive">No</button>
+                    <button ng-click="yesCard()" class="button button-balanced">Yes</button></div>
+            </td-card>
+        </td-cards>
+    </ion-pane>
+</ion-view>
